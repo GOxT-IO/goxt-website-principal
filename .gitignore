@@ -42,3 +42,4 @@ next-env.d.ts
 
 # videos originales (sin comprimir)
 public/videos/DemoCRM*.mp4
+public/videos/DEMO CRM*.mp4
