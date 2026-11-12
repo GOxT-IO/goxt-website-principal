@@ -52,7 +52,7 @@ export default function PowerSkillsEcosistema() {
                     className="object-contain opacity-70"
                     style={{ width: "64px", height: "24px" }}
                   />
-                  <span className="text-sm text-muted-foreground">SLEP · y más</span>
+                  <span className="text-sm text-muted-foreground">y más</span>
                 </div>
               </div>
             </div>

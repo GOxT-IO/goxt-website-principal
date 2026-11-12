@@ -1,32 +1,29 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/layout/navbar";
-import { HeroSection, PainPoints, FeaturesSection, Testimonials, CTASection, Footer } from "@/components/sections";
+import PageShell from "@/components/venture-lab/page-shell";
+import HomeHero from "@/components/venture-lab/home-hero";
+import { Pillars, MethodPreview, ProductsPreview, OpenLabBanner } from "@/components/venture-lab/blocks";
+import { FinalCta } from "@/components/venture-lab/primitives";
 import { defaultOgImages } from "@/lib/metadata";
 
+const title = "GOXT Venture Lab | Del desafío al resultado";
+const description =
+  "Venture lab para instituciones, empresas y emprendedores: diagnosticamos, construimos la tecnología y te conectamos con la red para lograr resultados.";
+
 export const metadata: Metadata = {
-  title: { absolute: "GOxT | CRM, Logística e IA para tu operación" },
-  description: "Gestiona clientes, controla tu operación logística e implementa IA en tu negocio. Todo en una sola plataforma pensada para Latinoamérica.",
-  openGraph: {
-    title: "GOxT | CRM, Logística e IA para tu operación",
-    description: "Gestiona clientes, controla tu operación logística e implementa IA en tu negocio. Todo en una sola plataforma pensada para Latinoamérica.",
-    url: "https://goxt.io",
-    images: defaultOgImages,
-  },
+  title: { absolute: title },
+  description,
+  openGraph: { title, description, url: "https://goxt.io", images: defaultOgImages },
 };
 
 export default function Home() {
   return (
-    <div className="relative">
-      <Navbar />
-      <main>
-        <HeroSection />
-        {/* <BrandSlider /> */}
-        <PainPoints />
-        <FeaturesSection />
-        <Testimonials />
-        <CTASection />
-      </main>
-      <Footer />
-    </div>
+    <PageShell>
+      <HomeHero />
+      <Pillars />
+      <MethodPreview />
+      <ProductsPreview />
+      <OpenLabBanner />
+      <FinalCta />
+    </PageShell>
   );
 }

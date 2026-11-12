@@ -19,9 +19,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: "https://goxt.io",            lastModified: new Date(), changeFrequency: "weekly",  priority: 1.0 },
+    { url: "https://goxt.io/instituciones", lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: "https://goxt.io/empresas",      lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: "https://goxt.io/emprendedores", lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: "https://goxt.io/metodo",        lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://goxt.io/productos",     lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://goxt.io/red",           lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: "https://goxt.io/cargas",     lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://goxt.io/blog",       lastModified: new Date(), changeFrequency: "daily",   priority: 0.9 },
-    { url: "https://goxt.io/soluciones", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://goxt.io/planes",     lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://goxt.io/demo",       lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://goxt.io/contacto",   lastModified: new Date(), changeFrequency: "yearly",  priority: 0.7 },

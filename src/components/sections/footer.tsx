@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 
 const FacebookIcon = () => (
@@ -41,13 +42,23 @@ const InstagramIcon = () => (
 
 const footerSections = [
   {
-    title: "Navegación",
+    title: "Venture Lab",
     links: [
-      { title: "Soluciones", href: "/soluciones" },
+      { title: "Instituciones", href: "/instituciones" },
+      { title: "Empresas", href: "/empresas" },
+      { title: "Emprendedores", href: "/emprendedores" },
+      { title: "Cómo trabajamos", href: "/metodo" },
+      { title: "Red y aliados", href: "/red" },
+    ],
+  },
+  {
+    title: "Productos",
+    links: [
+      { title: "NETGROW", href: "https://crm.goxt.io" },
+      { title: "CARGO", href: "https://cargo.goxt.io" },
       { title: "Power Skills", href: "/skills" },
       { title: "Planes", href: "/planes" },
       { title: "Blog", href: "/blog" },
-      { title: "Contacto", href: "/contacto" },
     ],
   },
   {
@@ -69,10 +80,10 @@ const Footer = () => {
             {/* Logo + tagline + redes */}
             <div className="col-span-full lg:col-span-4">
               <div className="flex flex-col gap-6 ">
-                <a href="#" className="relative block w-30">
+                <Link href="/" className="relative block w-30">
                   <Image
                     src="/assets/logo_goxt.png"
-                    alt="GOxT"
+                    alt="GOXT Venture Lab"
                     width={120}
                     height={40}
                     className="dark:opacity-0 transition-opacity duration-300"
@@ -80,15 +91,15 @@ const Footer = () => {
                   />
                   <Image
                     src="/assets/logo_goxt_blanco.png"
-                    alt="GOxT"
+                    alt="GOXT Venture Lab"
                     width={120}
                     height={40}
                     className="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-300"
                     style={{ width: "120px", height: "40px" }}
                   />
-                </a>
+                </Link>
                 <p className="text-base font-normal text-muted-foreground text-justify">
-                  Construimos tecnología para que operes mejor, vendas más y pierdas menos tiempo en el caos operacional.
+                  GOXT Venture Lab. Del desafío al resultado: consultoría, desarrollo tecnológico, formación y redes en un solo equipo.
                 </p>
                 <div className="flex items-center gap-4">
                   <a href="https://www.facebook.com/people/GOXT/61587279490575/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
@@ -106,8 +117,6 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-
-            <div className="col-span-1 lg:block hidden" />
 
             {/* Navegación + Legal */}
             {footerSections.map(({ title, links }, index) => (
@@ -128,7 +137,7 @@ const Footer = () => {
             ))}
 
             {/* Contacto */}
-            <div className="col-span-3">
+            <div className="col-span-2">
               <div className="flex flex-col gap-4 ">
                 <p className="text-base font-medium text-foreground">Contacto</p>
                 <ul className="flex flex-col gap-3">
@@ -148,6 +157,11 @@ const Footer = () => {
                     </a>
                   </li>
                   <li>
+                    <a href="/contacto" className="text-base font-normal text-muted-foreground hover:text-foreground">
+                      Escríbenos
+                    </a>
+                  </li>
+                  <li>
                     <a href="/cargas" className="text-base font-normal text-muted-foreground hover:text-foreground">
                       Cargas
                     </a>
@@ -161,7 +175,7 @@ const Footer = () => {
           <Separator orientation="horizontal" />
 
           <p className="text-sm font-normal text-muted-foreground text-center ">
-            © 2026 GOxT SPA. Todos los derechos reservados.
+            © 2026 GOxT SpA · GOXT Venture Lab. Todos los derechos reservados.
           </p>
         </div>
       </div>
