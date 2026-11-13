@@ -54,13 +54,9 @@ export default function EcosystemCycle({
         <marker id="flow-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M 0 0 L 10 5 L 0 10 z" className="fill-current" />
         </marker>
-        <radialGradient id="cycle-glow">
-          <stop offset="0%" stopColor="#00b5d8" stopOpacity="0.28" />
-          <stop offset="100%" stopColor="#00b5d8" stopOpacity="0" />
-        </radialGradient>
       </defs>
 
-      <circle r={R * 1.15} fill="url(#cycle-glow)" />
+      <circle r={R} className="fill-papel-1" />
 
       {/* Flujos entre públicos: el anillo exterior del ciclo */}
       {flows.map((fl) => {
@@ -74,21 +70,10 @@ export default function EcosystemCycle({
               d={arcPath(RING, a0, a1)}
               fill="none"
               stroke="currentColor"
-              strokeWidth={on ? 2.5 : 1.5}
+              strokeWidth={on ? 2 : 1.25}
               markerEnd="url(#flow-arrow)"
               className="transition-all duration-700"
             />
-            {on && (
-              <path
-                d={arcPath(RING, a0, a1)}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={4}
-                strokeLinecap="round"
-                strokeDasharray="2 22"
-                className="motion-safe:animate-[cycle-flow_1.6s_linear_infinite]"
-              />
-            )}
             <path id={id} d={labelArc(RING + 14, a0, a1)} fill="none" />
             <text
               className={cn(
@@ -106,7 +91,7 @@ export default function EcosystemCycle({
       })}
 
       {/* El isotipo: borde y tres trazos, uno por público */}
-      <circle r={R} fill="none" className="stroke-foreground" strokeWidth={3} />
+      <circle r={R} fill="none" className="stroke-tinta" strokeWidth={2.5} />
       {cycleNodes.map((n) => {
         const on = n.slug === active;
         return (
@@ -114,11 +99,11 @@ export default function EcosystemCycle({
             key={n.slug}
             d={bladePath(R, n.angle)}
             fill="none"
-            strokeWidth={on ? 9 : 6}
+            strokeWidth={on ? 7 : 5}
             strokeLinecap="round"
             className={cn(
               "cursor-pointer transition-all duration-700",
-              on ? "stroke-cian" : "stroke-foreground/80 hover:stroke-foreground"
+              on ? "stroke-cian" : "stroke-tinta/75 hover:stroke-tinta"
             )}
             onMouseEnter={() => onActive(n.slug)}
             onClick={() => onActive(n.slug)}
@@ -142,9 +127,6 @@ export default function EcosystemCycle({
             className="outline-none"
           >
             <circle cx={p.x} cy={p.y} r={on ? 11 : 8} className={cn("transition-all duration-700", on ? "fill-cian" : "fill-background stroke-foreground")} strokeWidth={2.5} />
-            {on && (
-              <circle cx={p.x} cy={p.y} r={11} className="fill-none stroke-cian motion-safe:animate-ping origin-center [transform-box:fill-box]" strokeWidth={1.5} />
-            )}
             <text
               x={lp.x}
               y={lp.y + 5}

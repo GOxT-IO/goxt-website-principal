@@ -96,7 +96,7 @@ export function MethodPreview() {
         <SectionHeading
           eyebrow="Cómo trabajamos"
           title="Un ciclo, no una línea"
-          lead="Cada etapa transforma algo y se lo entrega a la siguiente. Escalar abre nuevos desafíos y el ciclo vuelve a empezar."
+          lead="La ciencia observa a las personas y su entorno, la ingeniería lo lleva a la práctica, el diseño lo hace usable y el arte cuestiona cómo lo vivimos. Eso abre nuevas preguntas y el ciclo vuelve a empezar."
         />
         <CtaLink href="/metodo" variant="secondary">
           Conoce el método

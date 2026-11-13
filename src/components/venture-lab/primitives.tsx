@@ -108,10 +108,6 @@ export function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(60%_60%_at_20%_10%,rgba(0,181,216,0.18),transparent),radial-gradient(50%_50%_at_90%_20%,rgba(245,165,36,0.16),transparent)]"
-      />
       <div className="max-w-6xl mx-auto px-4 md:px-6 pt-12 md:pt-20 pb-12 md:pb-16">
         <div className="flex flex-col gap-6 max-w-4xl">
           <Eyebrow>{eyebrow}</Eyebrow>
@@ -139,14 +135,6 @@ export function FinalCta({
     <section className="py-16 md:py-24">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         <div className="relative overflow-hidden rounded-3xl bg-noche text-white px-6 py-14 md:px-16 md:py-20">
-          <div
-            aria-hidden
-            className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-cian/30 blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="absolute -left-16 -bottom-24 h-64 w-64 rounded-full bg-ambar/20 blur-3xl"
-          />
           <div className="relative flex flex-col gap-6 max-w-2xl">
             <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-balance">{title}</h2>
             <p className="text-white/75 text-base md:text-lg">{lead}</p>

@@ -37,10 +37,6 @@ export default function HomeHero() {
 
   return (
     <section className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 -z-10 h-[720px] bg-[radial-gradient(55%_60%_at_15%_0%,rgba(0,181,216,0.18),transparent),radial-gradient(45%_50%_at_95%_15%,rgba(245,165,36,0.14),transparent)]"
-      />
       <div className="max-w-6xl mx-auto px-4 md:px-6 pt-10 md:pt-16 pb-16 md:pb-24">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
           <div className="flex flex-col gap-6">
@@ -55,7 +51,7 @@ export default function HomeHero() {
             </div>
           </div>
           <div className="flex flex-col items-center gap-4">
-            <EcosystemCycle active={active} onActive={pick} className="max-w-[460px]" />
+            <EcosystemCycle active={active} onActive={pick} className="max-w-[440px]" />
             <p aria-live="polite" className="min-h-12 max-w-sm text-center text-sm text-muted-foreground">
               <span className="font-medium text-foreground">Causa y efecto: </span>
               {effects[active]}
