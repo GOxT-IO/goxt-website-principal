@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/venture-lab/page-shell";
 import { MethodSteps } from "@/components/venture-lab/blocks";
+import MethodCycle from "@/components/venture-lab/method-cycle";
 import { FinalCta, PageHero, Section, SectionHeading } from "@/components/venture-lab/primitives";
 
 const description =
@@ -40,7 +41,10 @@ export default function MetodoPage() {
         lead="Unimos design thinking, lean startup y desarrollo ágil en un mismo equipo. Puedes entrar en la etapa en la que estés."
       />
       <Section className="pt-0 md:pt-0">
-        <MethodSteps detailed />
+        <MethodCycle />
+        <div className="mt-10">
+          <MethodSteps detailed />
+        </div>
       </Section>
       <Section className="bg-muted/50">
         <SectionHeading eyebrow="Nuestros principios" title="Lo que no negociamos" />

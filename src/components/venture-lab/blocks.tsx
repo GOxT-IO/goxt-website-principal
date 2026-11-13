@@ -9,6 +9,7 @@ import {
   type Segment,
 } from "@/lib/venture-lab";
 import { CtaLink, Eyebrow, PageHero, Section, SectionHeading, FinalCta } from "./primitives";
+import MethodCycle from "./method-cycle";
 
 const segmentIcons = {
   instituciones: GraduationCap,
@@ -94,15 +95,15 @@ export function MethodPreview() {
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
         <SectionHeading
           eyebrow="Cómo trabajamos"
-          title="Cinco etapas, un solo equipo"
-          lead="Unimos design thinking, lean startup y desarrollo ágil para que cada etapa termine en algo concreto."
+          title="Un ciclo, no una línea"
+          lead="Cada etapa transforma algo y se lo entrega a la siguiente. Escalar abre nuevos desafíos y el ciclo vuelve a empezar."
         />
         <CtaLink href="/metodo" variant="secondary">
           Conoce el método
         </CtaLink>
       </div>
       <div className="mt-12">
-        <MethodSteps />
+        <MethodCycle />
       </div>
     </Section>
   );

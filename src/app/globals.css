@@ -324,3 +324,8 @@
     gap: 1rem;
   }
 }
+@keyframes cycle-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
