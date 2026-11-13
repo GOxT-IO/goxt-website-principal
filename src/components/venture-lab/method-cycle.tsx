@@ -29,13 +29,13 @@ const feedback = [
   "datos para consolidar el modelo",
 ];
 const verbs = ["Exploración", "Experimento", "Creación", "Conexión", "Crecimiento"];
-// Cinco casillas del núcleo, una por sector del ciclo.
+// Cinco casillas del núcleo: la capacidad que mueve cada etapa (mismo sector).
 const core = [
-  { label: "Consultoría", angle: -90 },
-  { label: "Tecnología", angle: -18 },
-  { label: "Negocios", angle: 54 },
-  { label: "Personas", angle: 126 },
-  { label: "Redes", angle: 198 },
+  { label: "Consultoría", angle: -90 }, // Descubrir
+  { label: "Personas", angle: -18 }, // Validar e iterar
+  { label: "Tecnología", angle: 54 }, // Construir
+  { label: "Negocios", angle: 126 }, // Lanzar
+  { label: "Redes", angle: 198 }, // Escalar
 ];
 
 function wedge(r0: number, r1: number, a0: number, a1: number) {
@@ -53,7 +53,7 @@ export default function MethodCycle() {
   useEffect(() => {
     if (touched) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(() => setActive((a) => (a + 1) % N), 3200);
+    const id = window.setInterval(() => setActive((a) => (a + 1) % N), 6000);
     return () => window.clearInterval(id);
   }, [touched]);
 
@@ -70,7 +70,7 @@ export default function MethodCycle() {
     <div className="grid items-center gap-10 rounded-3xl bg-noche p-6 text-white md:p-10 lg:grid-cols-[1.25fr_1fr]">
       <svg
         viewBox="-400 -262 800 530"
-        className="w-full h-auto select-none"
+        className="w-full h-auto select-none max-sm:hidden"
         role="group"
         aria-label="Ciclo del método GOXT"
       >
@@ -114,7 +114,7 @@ export default function MethodCycle() {
           const forwardOn = i === active;
           const backOn = (i + 1) % N === active;
           return (
-            <g key={i}>
+            <g key={i} className="max-sm:hidden">
               <path
                 d={arcPath(R_IN + 38, a - 13, a + 13)}
                 fill="none"
@@ -151,7 +151,7 @@ export default function MethodCycle() {
               x={p.x}
               y={p.y + 4}
               textAnchor="middle"
-              className={cn("text-[12px] transition-all duration-700", on ? "font-semibold" : "")}
+              className={cn("text-[12px] transition-all duration-700 max-sm:hidden", on ? "font-semibold" : "")}
               fill={on ? "#00b5d8" : "#ffffff"}
               fillOpacity={on ? 1 : 0.75}
             >
@@ -161,10 +161,19 @@ export default function MethodCycle() {
         })}
 
         {/* Núcleo: un solo equipo */}
-        {core.map((c) => {
+        {core.map((c, i) => {
           const p = polar(R_IN * 0.62, c.angle);
+          const on = i === active;
           return (
-            <text key={c.label} x={p.x} y={p.y + 4} textAnchor="middle" className="text-[10px]" fill="#ffffff" fillOpacity={0.8}>
+            <text
+              key={c.label}
+              x={p.x}
+              y={p.y + 4}
+              textAnchor="middle"
+              className={cn("text-[10px] transition-all duration-700 max-sm:hidden", on && "font-semibold")}
+              fill={on ? "#00b5d8" : "#ffffff"}
+              fillOpacity={on ? 1 : 0.8}
+            >
               {c.label}
             </text>
           );
@@ -207,6 +216,63 @@ export default function MethodCycle() {
           );
         })}
       </svg>
+      {/* Versión simple para celular: anillos, número de cada etapa y capacidades */}
+      <svg viewBox="-205 -205 410 410" className="mx-auto w-full max-w-xs h-auto select-none sm:hidden" aria-hidden>
+        <defs>
+          <radialGradient id="mc-out-m" cx="50%" cy="30%" r="75%">
+            <stop offset="0%" stopColor="#1d4a5c" />
+            <stop offset="100%" stopColor="#0d2a4a" />
+          </radialGradient>
+        </defs>
+        <circle r={R_OUT} fill="url(#mc-out-m)" />
+        <circle r={R_MID} fill="#0a2238" />
+        <circle r={R_IN} fill="#071a2c" />
+        <path
+          d={wedge(R_MID, R_OUT, centerAngle(active) - STEP / 2, centerAngle(active) + STEP / 2)}
+          fill="#00b5d8"
+          fillOpacity={0.3}
+          className="transition-all duration-700"
+        />
+        {methodSteps.map((_, i) => {
+          const a = centerAngle(i) + STEP / 2;
+          const p1 = polar(R_OUT, a);
+          const p0 = polar(R_IN, a);
+          return <line key={i} x1={p0.x} y1={p0.y} x2={p1.x} y2={p1.y} stroke="#ffffff" strokeOpacity={0.3} strokeDasharray="2 5" />;
+        })}
+        {methodSteps.map((_, i) => {
+          const p = polar((R_MID + R_OUT) / 2, centerAngle(i));
+          return (
+            <text key={i} x={p.x} y={p.y + 10} textAnchor="middle" className="text-[30px] font-semibold" fill={i === active ? "#00b5d8" : "#ffffff"}>
+              {i + 1}
+            </text>
+          );
+        })}
+        {methodSteps.map((_, i) => {
+          const p = polar((R_IN + R_MID) / 2, centerAngle(i));
+          return (
+            <text key={i} x={p.x} y={p.y + 7} textAnchor="middle" className="text-[20px]" fill={i === active ? "#00b5d8" : "#ffffff"}>
+              {i === active ? "→" : ""}
+            </text>
+          );
+        })}
+        <text y={6} textAnchor="middle" className="text-[17px] font-semibold" fill="#00b5d8">
+          {core[active].label}
+        </text>
+      </svg>
+      <div className="-mt-4 flex flex-wrap justify-center gap-2 sm:hidden">
+        {methodSteps.map((s, i) => (
+          <button
+            key={s.name}
+            onClick={() => pick(i)}
+            className={cn(
+              "rounded-full border px-3 py-1 text-xs transition",
+              i === active ? "border-cian bg-cian/15 text-white" : "border-white/20 text-white/70"
+            )}
+          >
+            {i + 1}. {s.name}
+          </button>
+        ))}
+      </div>
 
       <div aria-live="polite" className="flex flex-col gap-4">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cian">
@@ -215,16 +281,19 @@ export default function MethodCycle() {
         <h3 className="text-3xl md:text-4xl font-medium tracking-tight">{step.name}</h3>
         <p className="text-white/75 md:text-lg">{step.text}</p>
         <p className="text-sm text-white/60">
+          Capacidad que la mueve: <span className="text-white">{core[active].label}</span>
+        </p>
+        <p className="-mt-2 text-sm text-white/60">
           Entregable: <span className="text-white">{step.deliverable}</span>
         </p>
-        <div className="mt-2 flex items-center gap-3 rounded-2xl border border-white/15 p-4 text-sm">
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-white/15 p-4 text-sm">
           <span className="shrink-0 text-white/60">Esto activa</span>
           <ArrowRight size={16} className="shrink-0 text-white" />
           <span className="font-medium">
             {outputs[active]} para {next.name.toLowerCase()}
           </span>
         </div>
-        <div className="flex items-center gap-3 rounded-2xl border border-white/15 p-4 text-sm">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-white/15 p-4 text-sm">
           <span className="shrink-0 text-white/60">Devuelve a {prev.name}</span>
           <ArrowLeft size={16} className="shrink-0 text-ambar" />
           <span className="font-medium">{feedback[active]}</span>
