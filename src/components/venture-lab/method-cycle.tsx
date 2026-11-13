@@ -29,10 +29,13 @@ const feedback = [
   "datos para consolidar el modelo",
 ];
 const verbs = ["Exploración", "Experimento", "Creación", "Conexión", "Crecimiento"];
+// Cinco casillas del núcleo, una por sector del ciclo.
 const core = [
   { label: "Consultoría", angle: -90 },
-  { label: "Tecnología", angle: 30 },
-  { label: "Redes", angle: 150 },
+  { label: "Tecnología", angle: -18 },
+  { label: "Negocios", angle: 54 },
+  { label: "Personas", angle: 126 },
+  { label: "Redes", angle: 198 },
 ];
 
 function wedge(r0: number, r1: number, a0: number, a1: number) {
@@ -159,21 +162,14 @@ export default function MethodCycle() {
 
         {/* Núcleo: un solo equipo */}
         {core.map((c) => {
-          const p = polar(R_IN * (c.angle === -90 ? 0.32 : 0.5), c.angle);
+          const p = polar(R_IN * 0.62, c.angle);
           return (
-            <text key={c.label} x={p.x} y={p.y + 4} textAnchor="middle" className="text-[10.5px]" fill="#ffffff" fillOpacity={0.8}>
+            <text key={c.label} x={p.x} y={p.y + 4} textAnchor="middle" className="text-[10px]" fill="#ffffff" fillOpacity={0.8}>
               {c.label}
             </text>
           );
         })}
 
-        {/* Los dos espacios del centro: personas arriba, negocios abajo */}
-        <text y={-56} textAnchor="middle" className="text-[11.5px] font-semibold tracking-wide" fill="#00b5d8">
-          Personas
-        </text>
-        <text y={62} textAnchor="middle" className="text-[11.5px] font-semibold tracking-wide" fill="#00b5d8">
-          Negocios
-        </text>
 
         {/* Etapas alrededor del círculo */}
         {methodSteps.map((s, i) => {
