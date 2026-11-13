@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -22,15 +23,15 @@ import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "next-themes";
 
 const navItems = [
-  { title: "Inicio", href: "/" },
-  { title: "Soluciones", href: "/soluciones" },
-  { title: "Power Skills", href: "/skills" },
-  { title: "Planes", href: "/planes" },
-  { title: "Blog", href: "/blog" },
-  { title: "Contacto", href: "/contacto" },
+  { title: "Instituciones", href: "/instituciones" },
+  { title: "Empresas", href: "/empresas" },
+  { title: "Emprendedores", href: "/emprendedores" },
+  { title: "Método", href: "/metodo" },
+  { title: "Productos", href: "/productos" },
+  { title: "Red", href: "/red" },
 ];
 
-const DEMO_URL = "/demo";
+const DEMO_URL = "/diagnostico";
 
 const DemoButton = ({ className }: { className?: string }) => (
   <Button
@@ -42,7 +43,7 @@ const DemoButton = ({ className }: { className?: string }) => (
   >
     <a href={DEMO_URL}>
       <span className="relative z-10 transition-all duration-500">
-        Solicitar Demo
+        Conversemos
       </span>
       <span className="absolute right-1 w-8 h-8 bg-background text-foreground rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45">
         <ArrowUpRight size={16} />
@@ -138,10 +139,10 @@ export default function Navbar() {
         )}
       >
         {/* Logo */}
-        <a href="/" className="relative block w-30">
+        <Link href="/" className="relative block w-30">
           <Image
             src="/assets/logo_goxt.png"
-            alt="GOxT"
+            alt="GOXT Venture Lab"
             width={120}
             height={40}
             className="dark:opacity-0 transition-opacity duration-300"
@@ -150,14 +151,14 @@ export default function Navbar() {
           />
           <Image
             src="/assets/logo_goxt_blanco.png"
-            alt="GOxT"
+            alt="GOXT Venture Lab"
             width={120}
             height={40}
             className="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-300"
             style={{ width: "120px", height: "40px" }}
             priority
           />
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <NavigationMenu className="max-lg:hidden bg-muted p-0.5 rounded-full">
@@ -200,10 +201,10 @@ export default function Navbar() {
                 className="w-full sm:w-96 p-0 border-l-0"
               >
                 <div className="flex items-center justify-between p-6">
-                  <a href="#" className="relative block w-27.5">
+                  <Link href="/" className="relative block w-27.5">
                     <Image
                       src="/assets/logo_goxt.png"
-                      alt="GOxT"
+                      alt="GOXT Venture Lab"
                       width={110}
                       height={36}
                       className="dark:opacity-0 transition-opacity duration-300"
@@ -211,13 +212,13 @@ export default function Navbar() {
                     />
                     <Image
                       src="/assets/logo_goxt_blanco.png"
-                      alt="GOxT"
+                      alt="GOXT Venture Lab"
                       width={110}
                       height={36}
                       className="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-300"
                       style={{ width: "110px", height: "36px" }}
                     />
-                  </a>
+                  </Link>
                   <SheetClose>
                     <span className="rounded-full border border-border p-2.5 block">
                       <X width={16} height={16} />
@@ -253,7 +254,7 @@ export default function Navbar() {
                     </a>
                   </div>
                   <p className="text-sm text-muted-foreground mt-auto">
-                    © 2026 GOxT
+                    © 2026 GOXT Venture Lab
                   </p>
                 </div>
               </SheetContent>
