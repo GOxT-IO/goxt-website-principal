@@ -91,21 +91,25 @@ export default function MethodCycle() {
   const next = domains[(active + 1) % domains.length];
 
   return (
-    <div className="grid items-center gap-10 rounded-3xl border border-border bg-card p-6 md:p-10 lg:grid-cols-[1.2fr_1fr]">
-      <svg viewBox="-330 -262 660 524" className="w-full h-auto select-none text-tinta" role="group" aria-label="Ciclo GOXT: ciencia, ingeniería, diseño y arte">
+    <div className="grid items-center gap-10 rounded-3xl bg-noche p-6 text-white md:p-10 lg:grid-cols-[1.2fr_1fr]">
+      <svg viewBox="-330 -262 660 524" className="w-full h-auto select-none text-white" role="group" aria-label="Ciclo GOXT: ciencia, ingeniería, diseño y arte">
         <defs>
+          <radialGradient id="mc-out" cx="50%" cy="30%" r="75%">
+            <stop offset="0%" stopColor="#1d4a5c" />
+            <stop offset="100%" stopColor="#0d2a4a" />
+          </radialGradient>
           <marker id="mc-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
           </marker>
         </defs>
 
-        <circle r={R_OUT} className="fill-papel-1" />
+        <circle r={R_OUT} fill="url(#mc-out)" />
         <path
           d={wedge(R_MID, R_OUT, d.angle - 45, d.angle + 45)}
           className="fill-cian/25 transition-all duration-700"
         />
-        <circle r={R_MID} className="fill-papel-2" />
-        <circle r={R_IN} className="fill-papel-3" />
+        <circle r={R_MID} fill="#0a2238" />
+        <circle r={R_IN} fill="#071a2c" />
 
         {/* Ejes punteados, como en el ciclo original */}
         {[0, 90].map((a) => {
@@ -204,15 +208,15 @@ export default function MethodCycle() {
       <div aria-live="polite" className="flex flex-col gap-4">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cian">{d.role}</p>
         <h3 className="text-3xl md:text-4xl font-medium tracking-tight">{d.name}</h3>
-        <p className="text-muted-foreground md:text-lg">{d.text}</p>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-white/75 md:text-lg">{d.text}</p>
+        <p className="text-sm text-white/60">
           {d.stages.length > 1 ? "Etapas del método: " : "Etapa del método: "}
-          <span className="font-medium text-foreground">{d.stages.join(" y ")}</span>
+          <span className="font-medium text-white">{d.stages.join(" y ")}</span>
         </p>
-        <div className="mt-2 flex flex-wrap items-center gap-3 rounded-2xl border border-border bg-background p-4 text-sm">
-          <span className="text-muted-foreground">Entrega</span>
+        <div className="mt-2 flex flex-wrap items-center gap-3 rounded-2xl border border-white/15 p-4 text-sm">
+          <span className="text-white/60">Entrega</span>
           <span className="font-medium">{d.gives.toLowerCase()}</span>
-          <ArrowRight size={16} className="text-cian" />
+          <ArrowRight size={16} className="text-ambar" />
           <span className="font-medium">{next.name}</span>
         </div>
         <div className="flex gap-2 pt-2">
@@ -221,7 +225,7 @@ export default function MethodCycle() {
               key={dm.name}
               onClick={() => pick(i)}
               aria-label={`Ver ${dm.name}`}
-              className={cn("h-1.5 rounded-full transition-all duration-500", i === active ? "w-8 bg-cian" : "w-4 bg-border hover:bg-muted-foreground/40")}
+              className={cn("h-1.5 rounded-full transition-all duration-500", i === active ? "w-8 bg-cian" : "w-4 bg-white/25 hover:bg-white/50")}
             />
           ))}
         </div>
