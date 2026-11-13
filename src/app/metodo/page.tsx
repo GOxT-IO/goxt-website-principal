@@ -5,7 +5,7 @@ import MethodCycle from "@/components/venture-lab/method-cycle";
 import { FinalCta, PageHero, Section, SectionHeading } from "@/components/venture-lab/primitives";
 
 const description =
-  "Descubrir, Validar, Construir, Lanzar y Escalar: el método de GOXT Venture Lab para llevar un desafío a un resultado.";
+  "Descubrir, Validar e iterar, Construir, Lanzar y Escalar: el método de GOXT Venture Lab para llevar un desafío a un resultado.";
 
 export const metadata: Metadata = {
   title: "Cómo trabajamos",

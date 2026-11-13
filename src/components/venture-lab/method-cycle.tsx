@@ -56,7 +56,7 @@ export default function MethodCycle() {
   return (
     <div className="grid items-center gap-10 rounded-3xl bg-noche p-6 text-white md:p-10 lg:grid-cols-[1.25fr_1fr]">
       <svg
-        viewBox="-345 -262 690 520"
+        viewBox="-400 -262 800 520"
         className="w-full h-auto select-none"
         role="group"
         aria-label="Ciclo del método GOXT"

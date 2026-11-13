@@ -154,8 +154,8 @@ export const methodSteps = [
     deliverable: "Mapa de oportunidades y KPIs",
   },
   {
-    name: "Validar",
-    text: "Entrevistas, prototipo y prueba con usuarios reales antes de invertir en desarrollo.",
+    name: "Validar e iterar",
+    text: "Entrevistas, prototipo y prueba con usuarios reales. Iteramos hasta tener evidencia, antes de invertir en desarrollo.",
     deliverable: "Prototipo validado",
   },
   {
