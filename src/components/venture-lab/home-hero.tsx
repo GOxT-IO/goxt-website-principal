@@ -1,5 +1,5 @@
 import { BRAND } from "@/lib/venture-lab";
-import { Eyebrow } from "./primitives";
+import { CtaLink, Eyebrow } from "./primitives";
 import { SegmentSelector } from "./blocks";
 
 export default function HomeHero() {
@@ -18,6 +18,12 @@ export default function HomeHero() {
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl text-pretty">
             {BRAND.promise}
           </p>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-2">
+            <CtaLink href="/diagnostico">Agenda una conversación</CtaLink>
+            <CtaLink href="/metodo" variant="secondary">
+              Conoce cómo trabajamos
+            </CtaLink>
+          </div>
         </div>
         <div className="mt-12 md:mt-16 flex flex-col gap-4">
           <p className="text-sm font-medium text-muted-foreground">¿Desde dónde partes?</p>
