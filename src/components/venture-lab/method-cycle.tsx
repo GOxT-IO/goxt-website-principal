@@ -31,8 +31,8 @@ const feedback = [
 const verbs = ["Exploración", "Experimento", "Creación", "Conexión", "Crecimiento"];
 const core = [
   { label: "Consultoría", angle: -90 },
-  { label: "Tecnología", angle: 48 },
-  { label: "Redes", angle: 132 },
+  { label: "Tecnología", angle: 30 },
+  { label: "Redes", angle: 150 },
 ];
 
 function wedge(r0: number, r1: number, a0: number, a1: number) {
@@ -100,7 +100,7 @@ export default function MethodCycle() {
         {/* Divisiones punteadas entre etapas, como en el ciclo de Krebs */}
         {methodSteps.map((_, i) => {
           const a = centerAngle(i) + STEP / 2;
-          const p0 = polar(R_IN, a);
+          const p0 = polar(R_IN * 0.15, a);
           const p1 = polar(R_OUT + 30, a);
           return <line key={i} x1={p0.x} y1={p0.y} x2={p1.x} y2={p1.y} stroke="#ffffff" strokeOpacity={0.35} strokeDasharray="1.5 4" />;
         })}
@@ -157,28 +157,15 @@ export default function MethodCycle() {
           );
         })}
 
-        {/* Núcleo: un solo equipo (consultoría, tecnología y redes) */}
+        {/* Núcleo: un solo equipo */}
         {core.map((c) => {
-          const p = polar(R_IN * (c.angle === -90 ? 0.74 : 0.8), c.angle);
+          const p = polar(R_IN * 0.55, c.angle);
           return (
             <text key={c.label} x={p.x} y={p.y + 4} textAnchor="middle" className="text-[10.5px]" fill="#ffffff" fillOpacity={0.8}>
               {c.label}
             </text>
           );
         })}
-        {/* Centro: el isotipo GOXT, donde se encuentran personas y negocios */}
-        <image
-          href="/assets/favicon-source.png"
-          x={-25}
-          y={-38}
-          width={50}
-          height={50}
-          style={{ filter: "invert(1)", mixBlendMode: "screen" }}
-          aria-label="Isotipo GOXT"
-        />
-        <text y={26} textAnchor="middle" className="text-[10.5px] font-semibold tracking-wide" fill="#ffffff">
-          Personas / Negocios
-        </text>
 
         {/* Etapas alrededor del círculo */}
         {methodSteps.map((s, i) => {
