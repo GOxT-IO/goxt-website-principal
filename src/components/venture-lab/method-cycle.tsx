@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { methodSteps } from "@/lib/venture-lab";
 import { arcPath, polar } from "./cycle-geometry";
 import { cn } from "@/lib/utils";
 
 // Inspirado en el Krebs Cycle of Creativity de Neri Oxman: cada etapa
-// transforma algo y se lo entrega a la siguiente; Escalar vuelve a Descubrir.
+// transforma algo y se lo entrega a la siguiente (causa), y devuelve feedback a
+// la anterior para mejorarla o consolidarla. Escalar vuelve a Descubrir.
 
 const R_OUT = 200; // borde exterior
 const R_MID = 138; // anillo de transformaciones
@@ -19,11 +20,19 @@ const centerAngle = (i: number) => -90 + i * STEP;
 
 // Lo que cada etapa produce y entrega a la siguiente.
 const outputs = ["hipótesis", "evidencia", "producto", "clientes", "nuevos desafíos"];
+// Feedback: lo que cada etapa devuelve a la anterior para mejorarla o consolidarla.
+const feedback = [
+  "foco sobre qué vale la pena seguir escalando",
+  "aprendizajes que afinan el problema",
+  "límites técnicos y costos reales",
+  "uso real y mejoras para el producto",
+  "datos para consolidar el modelo",
+];
 const verbs = ["Exploración", "Experimento", "Creación", "Conexión", "Crecimiento"];
 const core = [
   { label: "Consultoría", angle: -90 },
-  { label: "Tecnología", angle: 30 },
-  { label: "Redes", angle: 150 },
+  { label: "Tecnología", angle: 48 },
+  { label: "Redes", angle: 132 },
 ];
 
 function wedge(r0: number, r1: number, a0: number, a1: number) {
@@ -52,11 +61,12 @@ export default function MethodCycle() {
 
   const step = methodSteps[active];
   const next = methodSteps[(active + 1) % N];
+  const prev = methodSteps[(active - 1 + N) % N];
 
   return (
     <div className="grid items-center gap-10 rounded-3xl bg-noche p-6 text-white md:p-10 lg:grid-cols-[1.25fr_1fr]">
       <svg
-        viewBox="-400 -262 800 520"
+        viewBox="-400 -262 800 530"
         className="w-full h-auto select-none"
         role="group"
         aria-label="Ciclo del método GOXT"
@@ -68,6 +78,9 @@ export default function MethodCycle() {
           </radialGradient>
           <marker id="mc-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="#ffffff" />
+          </marker>
+          <marker id="mc-arrow-back" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#f5a524" />
           </marker>
         </defs>
 
@@ -87,28 +100,42 @@ export default function MethodCycle() {
         {/* Divisiones punteadas entre etapas, como en el ciclo de Krebs */}
         {methodSteps.map((_, i) => {
           const a = centerAngle(i) + STEP / 2;
-          const p0 = polar(R_IN * 0.15, a);
+          const p0 = polar(R_IN, a);
           const p1 = polar(R_OUT + 30, a);
           return <line key={i} x1={p0.x} y1={p0.y} x2={p1.x} y2={p1.y} stroke="#ffffff" strokeOpacity={0.35} strokeDasharray="1.5 4" />;
         })}
 
-        {/* Flechas en el núcleo: todo se mueve en un sentido */}
+        {/* Flechas en cada paso: hacia adelante la causa, hacia atrás el feedback */}
         {methodSteps.map((_, i) => {
-          const a = centerAngle(i);
+          const a = centerAngle(i) + STEP / 2;
+          const forwardOn = i === active;
+          const backOn = (i + 1) % N === active;
           return (
-            <path
-              key={i}
-              d={arcPath(R_IN + 22, a - 10, a + 10)}
-              fill="none"
-              stroke="#ffffff"
-              strokeWidth={1.5}
-              strokeDasharray="2 3"
-              markerEnd="url(#mc-arrow)"
-              opacity={i === active ? 1 : 0.45}
-              className="transition-opacity duration-700"
-            />
+            <g key={i}>
+              <path
+                d={arcPath(R_IN + 38, a - 13, a + 13)}
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth={2}
+                strokeDasharray="2 3"
+                markerEnd="url(#mc-arrow)"
+                opacity={forwardOn ? 1 : 0.45}
+                className="transition-opacity duration-700"
+              />
+              <path
+                d={arcPath(R_IN + 18, a - 13, a + 13)}
+                fill="none"
+                stroke="#f5a524"
+                strokeWidth={2}
+                strokeDasharray="2 3"
+                markerStart="url(#mc-arrow-back)"
+                opacity={backOn ? 1 : 0.4}
+                className="transition-opacity duration-700"
+              />
+            </g>
           );
         })}
+
 
         {/* Transformaciones: lo que cada etapa entrega a la siguiente */}
         {outputs.map((o, i) => {
@@ -130,15 +157,28 @@ export default function MethodCycle() {
           );
         })}
 
-        {/* Núcleo: un solo equipo */}
+        {/* Núcleo: un solo equipo (consultoría, tecnología y redes) */}
         {core.map((c) => {
-          const p = polar(R_IN * 0.55, c.angle);
+          const p = polar(R_IN * (c.angle === -90 ? 0.74 : 0.8), c.angle);
           return (
             <text key={c.label} x={p.x} y={p.y + 4} textAnchor="middle" className="text-[10.5px]" fill="#ffffff" fillOpacity={0.8}>
               {c.label}
             </text>
           );
         })}
+        {/* Centro: el isotipo GOXT, donde se encuentran personas y negocios */}
+        <image
+          href="/assets/favicon-source.png"
+          x={-25}
+          y={-38}
+          width={50}
+          height={50}
+          style={{ filter: "invert(1)", mixBlendMode: "screen" }}
+          aria-label="Isotipo GOXT"
+        />
+        <text y={26} textAnchor="middle" className="text-[10.5px] font-semibold tracking-wide" fill="#ffffff">
+          Personas / Negocios
+        </text>
 
         {/* Etapas alrededor del círculo */}
         {methodSteps.map((s, i) => {
@@ -187,11 +227,20 @@ export default function MethodCycle() {
           Entregable: <span className="text-white">{step.deliverable}</span>
         </p>
         <div className="mt-2 flex items-center gap-3 rounded-2xl border border-white/15 p-4 text-sm">
-          <span className="text-white/60">Esto activa</span>
-          <ArrowRight size={16} className="text-ambar" />
+          <span className="shrink-0 text-white/60">Esto activa</span>
+          <ArrowRight size={16} className="shrink-0 text-white" />
           <span className="font-medium">
             {outputs[active]} para {next.name.toLowerCase()}
           </span>
+        </div>
+        <div className="flex items-center gap-3 rounded-2xl border border-white/15 p-4 text-sm">
+          <span className="shrink-0 text-white/60">Devuelve a {prev.name}</span>
+          <ArrowLeft size={16} className="shrink-0 text-ambar" />
+          <span className="font-medium">{feedback[active]}</span>
+        </div>
+        <div className="flex flex-col gap-1 text-xs text-white/60">
+          <span><span className="text-white">→</span> Causa: lo que una etapa provoca en la siguiente.</span>
+          <span><span className="text-ambar">←</span> Feedback: lo que devuelve a la anterior para mejorarla o consolidarla.</span>
         </div>
         <div className="flex gap-2 pt-2">
           {methodSteps.map((s, i) => (
