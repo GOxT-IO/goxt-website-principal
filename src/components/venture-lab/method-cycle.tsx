@@ -159,13 +159,21 @@ export default function MethodCycle() {
 
         {/* Núcleo: un solo equipo */}
         {core.map((c) => {
-          const p = polar(R_IN * 0.55, c.angle);
+          const p = polar(R_IN * (c.angle === -90 ? 0.32 : 0.5), c.angle);
           return (
             <text key={c.label} x={p.x} y={p.y + 4} textAnchor="middle" className="text-[10.5px]" fill="#ffffff" fillOpacity={0.8}>
               {c.label}
             </text>
           );
         })}
+
+        {/* Los dos espacios del centro: personas arriba, negocios abajo */}
+        <text y={-56} textAnchor="middle" className="text-[11.5px] font-semibold tracking-wide" fill="#00b5d8">
+          Personas
+        </text>
+        <text y={62} textAnchor="middle" className="text-[11.5px] font-semibold tracking-wide" fill="#00b5d8">
+          Negocios
+        </text>
 
         {/* Etapas alrededor del círculo */}
         {methodSteps.map((s, i) => {
