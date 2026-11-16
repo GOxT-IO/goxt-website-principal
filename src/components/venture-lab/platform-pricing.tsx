@@ -9,13 +9,13 @@ export default function PlatformPricing() {
       <SectionHeading
         eyebrow="Plataformas"
         title="Un mismo precio para NETGROW, CARGO y BI"
-        lead="Cada plataforma se contrata por separado y con el mismo esquema. Empiezas con un descuento de entrada durante el primer año."
+        lead="Cada plataforma se contrata por separado y con el mismo esquema. Desde 3 usuarios tienes descuento de entrada durante el primer año."
       />
       <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1.3fr]">
         <div className="flex flex-col gap-4 rounded-3xl bg-noche p-8 text-white">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cian">Precio normal</p>
           <p className="text-5xl font-medium tracking-tight">{pr.base}</p>
-          <p className="text-white/70">{pr.unit}, por plataforma.</p>
+          <p className="text-white/70">{pr.unit}, por plataforma. Puedes partir con un solo usuario.</p>
           <ul className="mt-2 flex flex-col gap-2 text-sm text-white/80">
             <li className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-cian" />Actualizaciones continuas incluidas</li>
             <li className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-cian" />Soporte técnico base</li>
@@ -26,7 +26,7 @@ export default function PlatformPricing() {
           </div>
         </div>
         <div className="flex flex-col gap-4 rounded-3xl border border-border bg-card p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cian">Tu primer año</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cian">Tu primer año, desde 3 usuarios</p>
           <ol className="flex flex-col divide-y divide-border">
             {pr.firstYear.map((t) => (
               <li key={t.period} className="flex items-baseline justify-between gap-4 py-4">
