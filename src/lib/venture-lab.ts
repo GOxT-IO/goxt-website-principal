@@ -192,7 +192,7 @@ export type Product = {
 export const products: Product[] = [
   {
     name: "NETGROW",
-    price: "UF 0,75 por usuario al mes · desde 3 usuarios, primer semestre UF 0,375",
+    price: "UF 1,5 por usuario al mes · desde 3 usuarios, primer semestre UF 0,75",
     category: "Crecimiento comercial",
     text: "CRM para ordenar clientes, oportunidades y cotizaciones, con agente de IA integrado.",
     features: ["Pipeline visual", "Cotizaciones en minutos", "Seguimiento automático", "Agente IA"],
@@ -202,7 +202,7 @@ export const products: Product[] = [
   },
   {
     name: "CARGO",
-    price: "UF 0,75 por usuario al mes · desde 3 usuarios, primer semestre UF 0,375",
+    price: "UF 1,5 por usuario al mes · desde 3 usuarios, primer semestre UF 0,75",
     category: "Transporte y logística",
     text: "Software para dadores de carga: contratos de transporte, despachos y seguimiento en un solo lugar.",
     features: ["Digitalización logística", "Control de contratos", "Seguimiento de despachos"],
@@ -212,7 +212,7 @@ export const products: Product[] = [
   },
   {
     name: "BI",
-    price: "UF 0,75 por usuario al mes · desde 3 usuarios, primer semestre UF 0,375",
+    price: "UF 1,5 por usuario al mes · desde 3 usuarios, primer semestre UF 0,75",
     category: "Inteligencia de negocio",
     text: "Tableros e indicadores para decidir con datos de tu operación y tu área comercial.",
     features: ["Tableros por área", "KPIs en tiempo real", "Datos conectados"],
@@ -248,15 +248,15 @@ export const networkGroups = [
   },
 ];
 
-// Precios de plataformas (decisión de Rodrigo, 16-nov-2026). Mismo esquema
+// Precios de plataformas (decisión de Rodrigo, 16-nov-2026; precio normal UF 1,5). Mismo esquema
 // para NETGROW, CARGO y BI. Descuento de entrada desde 3 usuarios; con 1 o 2 usuarios, precio normal.
 export const platformPricing = {
-  base: "UF 0,75",
+  base: "UF 1,5",
   unit: "por usuario al mes",
   firstYear: [
-    { period: "Meses 1 a 6", price: "UF 0,375", note: "50% de descuento de entrada" },
-    { period: "Meses 7 a 12", price: "UF 0,56", note: "25% de descuento" },
-    { period: "Desde el mes 13", price: "UF 0,75", note: "Precio normal" },
+    { period: "Meses 1 a 6", price: "UF 0,75", note: "50% de descuento de entrada" },
+    { period: "Meses 7 a 12", price: "UF 1,125", note: "25% de descuento" },
+    { period: "Desde el mes 13", price: "UF 1,5", note: "Precio normal" },
   ],
   commitment: "Desde 3 usuarios y con compromiso de 12 meses. Con 1 o 2 usuarios aplica el precio normal.",
   annual: "Desde el segundo año, 20% de descuento pagando el año por adelantado.",
