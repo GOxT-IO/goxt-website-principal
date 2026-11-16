@@ -21,8 +21,12 @@ export default function PlatformPricing() {
             <li className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-cian" />Soporte técnico base</li>
             <li className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-cian" />{pr.annual}</li>
           </ul>
-          <div className="mt-auto pt-4">
-            <CtaLink href="/diagnostico?service=Plataformas" variant="light">Pide tu demo</CtaLink>
+          <div className="mt-auto flex flex-col gap-3 pt-4">
+            <CtaLink href="/empezar" variant="light">Empieza ahora</CtaLink>
+            <p className="text-sm text-white/70">
+              Creas tu workspace por tu cuenta. ¿Prefieres verla antes?{" "}
+              <a href="/demo" className="text-white underline underline-offset-4">Demo semanal en vivo</a>
+            </p>
           </div>
         </div>
         <div className="flex flex-col gap-4 rounded-3xl border border-border bg-card p-8">

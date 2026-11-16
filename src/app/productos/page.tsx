@@ -20,9 +20,12 @@ export default function ProductosPage() {
         title="Productos que funcionan por sí solos"
         lead="Cada producto se contrata de forma independiente y resuelve un problema concreto. Juntos forman el ecosistema GOXT Venture Lab y son la base sobre la que construimos los proyectos de nuestros clientes."
       >
-        <CtaLink href="/planes">Ver planes y precios</CtaLink>
-        <CtaLink href="/plataformas" variant="secondary">
-          Ingresar a mi plataforma
+        <CtaLink href="/empezar">Empieza ahora</CtaLink>
+        <CtaLink href="/demo" variant="secondary">
+          Demo semanal en vivo
+        </CtaLink>
+        <CtaLink href="/planes" variant="secondary">
+          Ver planes y precios
         </CtaLink>
       </PageHero>
       <Section className="pt-0 md:pt-0">

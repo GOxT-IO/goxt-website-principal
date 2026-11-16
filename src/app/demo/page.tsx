@@ -5,11 +5,11 @@ import { DemoSection, Footer } from "@/components/sections";
 import { defaultOgImages } from "@/lib/metadata";
 
 export const metadata: Metadata = {
-  title: "Solicita tu Demo",
-  description: "En 30 minutos te mostramos cómo GOxT puede ordenar tu operación. Sin instalaciones, sin tarjeta de crédito.",
+  title: "Demo semanal",
+  description: "Una vez por semana mostramos NETGROW, CARGO y BI en vivo. Inscríbete gratis y te enviamos la fecha y el enlace.",
   openGraph: {
-    title: "Solicita tu Demo | GOxT",
-    description: "En 30 minutos te mostramos cómo GOxT puede ordenar tu operación. Sin instalaciones, sin tarjeta de crédito.",
+    title: "Demo semanal | GOXT Venture Lab",
+    description: "Una vez por semana mostramos NETGROW, CARGO y BI en vivo. Inscríbete gratis y te enviamos la fecha y el enlace.",
     url: "https://goxt.io/demo",
     images: defaultOgImages,
   },

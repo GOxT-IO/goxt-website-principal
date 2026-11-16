@@ -20,7 +20,7 @@ const solutions = [
     label: "CRM: De Leads a Clientes",
     description:
       "¿Sigues perdiendo ventas porque nadie da seguimiento a tiempo? Pipeline visual, cotizaciones en minutos y seguimiento automático desde el primer contacto.",
-    cta: "Solicitar Demo",
+    cta: "Ver demo semanal",
     href: "/demo?product=GOXT+CRM",
     image: "/assets/features/CRM.jpg",
     alt: "GOxT CRM",
@@ -30,7 +30,7 @@ const solutions = [
     label: "Cargo: Del Despacho a la Entrega",
     description:
       "¿No sabes dónde está tu carga ni en qué estado va cada despacho? Tracking en tiempo real, documentos digitales y alertas automáticas sin llamadas.",
-    cta: "Solicitar Demo",
+    cta: "Ver demo semanal",
     href: "/demo?product=TMS+Cargo",
     image: "/assets/features/Cargo.jpg",
     alt: "GOxT Cargo",
@@ -40,7 +40,7 @@ const solutions = [
     label: "Network: Tus Clientes, Siempre Informados",
     description:
       "¿Tus clientes te llaman para saber el estado de su pedido? Comparte trazabilidad en tiempo real sin correos ni llamadas de seguimiento.",
-    cta: "Solicitar Demo",
+    cta: "Ver demo semanal",
     href: "/demo?product=GONetwork",
     image: "/assets/features/Network.jpg",
     alt: "GOxT Network",
@@ -50,7 +50,7 @@ const solutions = [
     label: "BI: Decisiones con Datos Reales",
     description:
       "¿Tomas decisiones sin datos concretos? Dashboards automáticos con los KPIs que importan — ventas, logística y operaciones en un solo panel.",
-    cta: "Solicitar Demo",
+    cta: "Ver demo semanal",
     href: "/demo?product=GOXT+BI",
     image: "/assets/features/BI.jpg",
     alt: "GOxT BI",

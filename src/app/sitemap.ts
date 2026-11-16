@@ -28,6 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: "https://goxt.io/cargas",     lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://goxt.io/blog",       lastModified: new Date(), changeFrequency: "daily",   priority: 0.9 },
     { url: "https://goxt.io/planes",     lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://goxt.io/empezar",    lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://goxt.io/demo",       lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://goxt.io/contacto",   lastModified: new Date(), changeFrequency: "yearly",  priority: 0.7 },
     { url: "https://goxt.io/diagnostico",lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },

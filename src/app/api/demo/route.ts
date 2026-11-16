@@ -135,14 +135,16 @@ async function createOpportunity(
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, company, notes } = await req.json();
+    const { name, email, company, notes, kind } = await req.json();
+    // kind: "demo" (inscripción a la demo semanal) o "registro" (inicio autónomo con perfil)
+    const prefix = kind === "registro" ? "Registro autónomo" : "Inscripción demo semanal";
 
     await loadConfig();
 
     const orgId    = company ? await createOrg(company) : null;
     const personId = await createPerson(name, email, orgId);
 
-    await createOpportunity(personId, orgId, `Solicitud Demo: ${name}`, notes ?? "");
+    await createOpportunity(personId, orgId, `${prefix}: ${name}`, notes ?? "");
 
     return NextResponse.json({ success: true });
   } catch (error: any) {
