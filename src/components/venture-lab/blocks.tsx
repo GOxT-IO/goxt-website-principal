@@ -140,6 +140,7 @@ export function ProductsGrid() {
               />
             </div>
             <p className="text-muted-foreground">{p.text}</p>
+            {p.price && <p className="text-sm font-medium text-foreground">{p.price}</p>}
             <ul className="flex flex-wrap gap-2 pt-2">
               {p.features.map((f) => (
                 <li key={f} className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">

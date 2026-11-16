@@ -38,9 +38,9 @@ const plans: Plan[] = [
     badge: "Más Solicitado",
     name: "Plataformas",
     service: "Plataformas",
-    description: "Accede a las herramientas que tu operación necesita. Fee mensual por usuario, según el producto que uses.",
+    description: "NETGROW, CARGO y BI: UF 0,75 por usuario al mes, con descuento de entrada el primer año.",
     features: [
-      "CRM para gestión comercial",
+      "NETGROW para crecimiento comercial",
       "CARGO para operaciones logísticas",
       "BI para inteligencia de negocio",
       "Actualizaciones continuas incluidas",

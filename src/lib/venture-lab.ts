@@ -5,7 +5,7 @@ export const BRAND = {
   name: "GOXT Venture Lab",
   tagline: "Del desafío al resultado",
   promise:
-    "Convertimos desafíos e ideas en resultados: diagnosticamos, construimos la tecnología y te conectamos con la red para crecer, con un solo equipo.",
+    "GOXT convierte desafíos e ideas en soluciones que funcionan y dan resultados: más eficiencia, más ventas o un negocio nuevo. Diagnosticamos, construimos la tecnología y te conectamos con la red, con un solo equipo.",
 };
 
 export type SegmentSlug = "instituciones" | "empresas" | "emprendedores";
@@ -65,12 +65,13 @@ export const segments: Segment[] = [
   {
     slug: "empresas",
     selector: "Soy una empresa",
-    eyebrow: "Empresas que quieren innovar, digitalizarse o crecer",
+    eyebrow: "Empresas que buscan eficiencia, más ventas o nuevos negocios",
     title: "Tu equipo de innovación y tecnología, del diagnóstico al resultado en producción",
     lead:
       "Un solo equipo que entiende tu negocio, valida la oportunidad y construye la solución. Sin informes que quedan en un cajón ni pilotos que no escalan.",
     buyer: "Gerencia General, Innovación, Operaciones y Personas",
     jobs: [
+      "Ganar eficiencia y vender más",
       "Detectar oportunidades y lanzar nuevas líneas de negocio",
       "Digitalizar y ordenar la operación",
       "Formar intraemprendedores",
@@ -177,6 +178,7 @@ export const methodSteps = [
 
 export type Product = {
   name: string;
+  price?: string;
   category: string;
   text: string;
   features: string[];
@@ -190,6 +192,7 @@ export type Product = {
 export const products: Product[] = [
   {
     name: "NETGROW",
+    price: "UF 0,75 por usuario al mes · primer semestre UF 0,375",
     category: "Crecimiento comercial",
     text: "CRM para ordenar clientes, oportunidades y cotizaciones, con agente de IA integrado.",
     features: ["Pipeline visual", "Cotizaciones en minutos", "Seguimiento automático", "Agente IA"],
@@ -199,6 +202,7 @@ export const products: Product[] = [
   },
   {
     name: "CARGO",
+    price: "UF 0,75 por usuario al mes · primer semestre UF 0,375",
     category: "Transporte y logística",
     text: "Software para dadores de carga: contratos de transporte, despachos y seguimiento en un solo lugar.",
     features: ["Digitalización logística", "Control de contratos", "Seguimiento de despachos"],
@@ -208,6 +212,7 @@ export const products: Product[] = [
   },
   {
     name: "BI",
+    price: "UF 0,75 por usuario al mes · primer semestre UF 0,375",
     category: "Inteligencia de negocio",
     text: "Tableros e indicadores para decidir con datos de tu operación y tu área comercial.",
     features: ["Tableros por área", "KPIs en tiempo real", "Datos conectados"],
@@ -242,3 +247,18 @@ export const networkGroups = [
     text: "Más de 100 mentores y especialistas que acompañan a los equipos en cada etapa.",
   },
 ];
+
+// Precios de plataformas (decisión de Rodrigo, 16-nov-2026). Mismo esquema
+// para NETGROW, CARGO y BI. El mínimo de usuarios aún no está confirmado: no publicarlo.
+export const platformPricing = {
+  base: "UF 0,75",
+  unit: "por usuario al mes",
+  firstYear: [
+    { period: "Meses 1 a 6", price: "UF 0,375", note: "50% de descuento de entrada" },
+    { period: "Meses 7 a 12", price: "UF 0,56", note: "25% de descuento" },
+    { period: "Desde el mes 13", price: "UF 0,75", note: "Precio normal" },
+  ],
+  commitment: "Con compromiso de 12 meses.",
+  annual: "Desde el segundo año, 20% de descuento pagando el año por adelantado.",
+  addOns: ["WhatsApp", "Agente IA", "Campañas", "Integración SII", "Onboarding"],
+};
