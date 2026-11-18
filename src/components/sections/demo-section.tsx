@@ -82,6 +82,7 @@ export default function DemoSection() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        kind:    "demo",
         name:    data.name,
         email:   data.email,
         company: data.company,
@@ -107,17 +108,27 @@ export default function DemoSection() {
           <div className="flex flex-1 flex-col gap-8">
             <div>
               <h1 className="mb-4 text-4xl font-medium tracking-tight md:text-5xl">
-                ¿Listo para ver GOXT en acción?
+                Demo semanal en vivo
               </h1>
               <p className="text-muted-foreground">
-                En 30 minutos te mostramos cómo GOXT puede ordenar tu operación.
+                Una vez por semana mostramos NETGROW, CARGO y BI funcionando, con casos reales y tiempo
+                para tus preguntas. Inscríbete y te enviamos la fecha, la hora y el enlace por correo.
               </p>
             </div>
             <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
-              <li>✓ Demo personalizada según tu industria</li>
+              <li>✓ Online, gratuita y en grupo</li>
               <li>✓ Sin instalaciones ni tarjeta de crédito</li>
-              <li>✓ Respondemos en menos de 24 horas</li>
+              <li>✓ Puedes traer a tu equipo</li>
             </ul>
+            <div className="rounded-2xl border border-border bg-card p-6">
+              <p className="font-medium">¿Prefieres partir ahora?</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                No necesitas esperar la demo. Crea tu workspace y empieza a usar la plataforma por tu cuenta.
+              </p>
+              <a href="/empezar" className="mt-3 inline-flex text-sm font-medium underline underline-offset-4">
+                Empieza ahora →
+              </a>
+            </div>
           </div>
 
           {/* Columna derecha — formulario */}
@@ -126,17 +137,17 @@ export default function DemoSection() {
               <div className="flex flex-col gap-6 rounded-xl bg-muted/50 p-8 md:p-10 h-full justify-center items-center text-center">
                 <CheckCircleIcon className="size-12 text-green-500" />
                 <div>
-                  <h2 className="text-xl font-semibold mb-2">¡Solicitud recibida!</h2>
+                  <h2 className="text-xl font-semibold mb-2">¡Quedaste inscrito!</h2>
                   <p className="text-sm text-muted-foreground">
-                    Estamos preparando tu demo. Pronto nos pondremos en contacto.
+                    Te enviaremos por correo la fecha, la hora y el enlace de la próxima demo semanal.
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 w-full max-w-xs">
-                  <p className="text-sm font-medium">¿Quieres agendar una reunión?</p>
+                  <p className="text-sm font-medium">¿Necesitas una reunión aparte para tu caso?</p>
                   <a href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
                     <Button className="w-full gap-2">
                       <CalendarIcon className="size-4" />
-                      Agendar demo
+                      Agendar reunión
                     </Button>
                   </a>
                 </div>
@@ -147,8 +158,8 @@ export default function DemoSection() {
                 className="flex flex-col gap-6 rounded-xl bg-muted/50 p-8 md:p-10"
               >
                 <div>
-                  <h2 className="text-xl font-semibold">Solicitar Demo</h2>
-                  <p className="text-sm text-muted-foreground">Preparamos tu demo en menos de 24 horas</p>
+                  <h2 className="text-xl font-semibold">Inscríbete en la demo semanal</h2>
+                  <p className="text-sm text-muted-foreground">Te avisamos de la próxima fecha</p>
                 </div>
 
                 <FieldGroup>
@@ -274,7 +285,7 @@ export default function DemoSection() {
                         Enviando...
                       </>
                     ) : (
-                      "Solicitar Demo"
+                      "Inscribirme"
                     )}
                   </Button>
                 </FieldGroup>

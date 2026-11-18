@@ -1,19 +1,24 @@
-# GOxT
+# GOXT Venture Lab
 
-GOxT es una plataforma SaaS chilena que ofrece CRM, TMS logístico e inteligencia de negocio para empresas de Latinoamérica.
+GOXT Venture Lab (GOxT SpA, Santiago de Chile) convierte desafíos e ideas en resultados. Une en un solo equipo consultoría, desarrollo tecnológico, formación y redes para instituciones, empresas y emprendedores de Latinoamérica.
 
-## Productos
-- GOxT CRM: gestión comercial, pipeline, cotizaciones y agente IA
-- TMS GONetwork: red colaborativa para transportistas y generadores de carga
-- TMS Cargo: software evolitivo de Network, busca conectar transportistas con generadores de carga en todo el mundo.
-- GOxT BI: dashboards e inteligencia de negocio (próximamente)
+Mensaje: Del desafío al resultado.
 
-## Servicios
-- Setup Inicial: implementación y parametrización
-- Desarrollo: integraciones y módulos a medida
-- Power Skills: programa de innovación y emprendimiento
+## Para quién
+- Instituciones (universidades, institutos, colegios, centros de innovación): programas de emprendimiento con reporte de impacto, Demo Day y laboratorios de innovación abierta. https://goxt.io/instituciones
+- Empresas: venture building corporativo, desarrollo a medida, plataformas GOXT e intraemprendimiento. https://goxt.io/empresas
+- Emprendedores, profesionales y pymes: validación, incubación y MVP. https://goxt.io/emprendedores
+
+## Método
+Descubrir, Validar, Construir, Lanzar y Escalar. https://goxt.io/metodo
+
+## Productos (independientes, parte del ecosistema GOXT Venture Lab)
+- NETGROW: CRM de crecimiento comercial con agente de IA. https://crm.goxt.io
+- CARGO: software de transporte y logística para dadores de carga. https://cargo.goxt.io
+- BI: tableros e inteligencia de negocio.
+- Power Skills: formación en innovación, emprendimiento y human skills. https://goxt.io/skills
 
 ## Contacto
 - Web: https://goxt.io
 - Email: contacto@goxt.io
-- Mercado: Chile y Latinoamérica
+- Mercados: Chile, México, Colombia y Latinoamérica

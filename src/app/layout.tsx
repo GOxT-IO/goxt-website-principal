@@ -12,12 +12,12 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "GOxT — Tecnología para operaciones que escalan",
-    template: "%s | GOxT",
+    default: "GOXT Venture Lab | Del desafío al resultado",
+    template: "%s | GOXT Venture Lab",
   },
   description:
-    "CRM, logística e inteligencia de negocio para empresas chilenas. Gestiona clientes, flota y operaciones desde un solo lugar. Implementación en días, no meses.",
-  keywords: ["CRM", "TMS", "logística", "software operacional", "Chile", "GOxT", "transportes", "gestión comercial"],
+    "GOXT Venture Lab convierte desafíos e ideas en resultados para instituciones, empresas y emprendedores: consultoría, desarrollo tecnológico, formación y redes en un solo equipo.",
+  keywords: ["venture lab", "innovación", "emprendimiento", "desarrollo tecnológico", "consultoría", "Power Skills", "NETGROW", "CARGO", "Chile", "Latinoamérica", "GOXT"],
   authors: [{ name: "GOxT SpA" }],
   creator: "GOxT SpA",
   metadataBase: new URL("https://goxt.io"),
@@ -25,16 +25,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_CL",
     url: "https://goxt.io",
-    siteName: "GOxT",
-    title: "GOxT — Tecnología para operaciones que escalan",
+    siteName: "GOXT Venture Lab",
+    title: "GOXT Venture Lab | Del desafío al resultado",
     description:
-      "CRM, logística e inteligencia de negocio para empresas chilenas. Menos caos, más control.",
+      "Consultoría, desarrollo tecnológico, formación y redes en un solo equipo para instituciones, empresas y emprendedores.",
     images: defaultOgImages,
   },
   twitter: {
     card: "summary_large_image",
-    title: "GOxT — Tecnología para operaciones que escalan",
-    description: "CRM, logística e inteligencia de negocio para empresas chilenas.",
+    title: "GOXT Venture Lab | Del desafío al resultado",
+    description: "Consultoría, desarrollo tecnológico, formación y redes en un solo equipo.",
     images: ["/assets/favicon-source.png"],
   },
   robots: {
@@ -50,10 +50,11 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "GOxT",
+  name: "GOXT Venture Lab",
+  legalName: "GOxT SpA",
   url: "https://goxt.io",
   logo: "https://goxt.io/assets/favicon-source.png",
-  description: "CRM, logística e inteligencia de negocio para empresas de Latinoamérica.",
+  description: "Venture lab que convierte desafíos e ideas en resultados para instituciones, empresas y emprendedores de Latinoamérica.",
   email: "contacto@goxt.io",
   areaServed: ["Chile", "Latinoamérica"],
 };

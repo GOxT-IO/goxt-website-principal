@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   Sheet,
   SheetContent,
@@ -17,38 +17,31 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "next-themes";
 
 const navItems = [
-  { title: "Inicio", href: "/" },
-  { title: "Soluciones", href: "/soluciones" },
-  { title: "Power Skills", href: "/skills" },
-  { title: "Planes", href: "/planes" },
-  { title: "Blog", href: "/blog" },
-  { title: "Contacto", href: "/contacto" },
+  { title: "Instituciones", href: "/instituciones" },
+  { title: "Empresas", href: "/empresas" },
+  { title: "Emprendedores", href: "/emprendedores" },
+  { title: "Método", href: "/metodo" },
+  { title: "Productos", href: "/productos" },
+  { title: "Red", href: "/red" },
 ];
 
-const DEMO_URL = "/demo";
+const DEMO_URL = "/diagnostico";
 
 const DemoButton = ({ className }: { className?: string }) => (
-  <Button
-    asChild
+  <a
+    href={DEMO_URL}
     className={cn(
-      "relative text-sm font-medium rounded-full h-10 p-1 ps-4 pe-12 group transition-all duration-500 hover:ps-12 hover:pe-4 w-fit overflow-hidden cursor-pointer",
+      "inline-flex h-9 w-fit items-center rounded-full bg-primary px-4 text-sm font-medium text-primary-foreground transition hover:opacity-85",
       className
     )}
   >
-    <a href={DEMO_URL}>
-      <span className="relative z-10 transition-all duration-500">
-        Solicitar Demo
-      </span>
-      <span className="absolute right-1 w-8 h-8 bg-background text-foreground rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45">
-        <ArrowUpRight size={16} />
-      </span>
-    </a>
-  </Button>
+    Conversemos
+  </a>
 );
 
 const ThemeToggle = ({ className }: { className?: string }) => {
@@ -68,7 +61,7 @@ const ThemeToggle = ({ className }: { className?: string }) => {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
       className={cn(
-        "relative w-9 h-9 rounded-full border border-border flex items-center justify-center transition-colors hover:bg-muted",
+        "relative w-9 h-9 rounded-full flex items-center justify-center transition-colors hover:bg-muted",
         className
       )}
     >
@@ -127,46 +120,42 @@ export default function Navbar() {
       initial={{ opacity: 0, y: -32 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      className="inset-x-0 z-50 px-4 flex items-center justify-center sticky top-0 h-20"
+      className={cn(
+        "inset-x-0 z-50 sticky top-0 h-16 flex items-center border-b transition-colors duration-300",
+        sticky ? "bg-background/80 backdrop-blur-lg border-border" : "bg-background border-transparent"
+      )}
     >
-      <div
-        className={cn(
-          "w-full max-w-6xl flex items-center h-fit justify-between gap-3.5 lg:gap-6 transition-all duration-500",
-          sticky
-            ? "p-2.5 bg-background/60 backdrop-blur-lg border border-border/40 shadow-2xl shadow-primary/5 rounded-full"
-            : "bg-transparent border-transparent"
-        )}
-      >
+      <div className="w-full max-w-6xl mx-auto px-5 md:px-8 flex items-center justify-between gap-6">
         {/* Logo */}
-        <a href="/" className="relative block w-30">
+        <Link href="/" className="relative block w-24">
           <Image
             src="/assets/logo_goxt.png"
-            alt="GOxT"
-            width={120}
-            height={40}
+            alt="GOXT Venture Lab"
+            width={96}
+            height={32}
             className="dark:opacity-0 transition-opacity duration-300"
-            style={{ width: "120px", height: "40px" }}
+            style={{ width: "96px", height: "32px" }}
             priority
           />
           <Image
             src="/assets/logo_goxt_blanco.png"
-            alt="GOxT"
-            width={120}
-            height={40}
+            alt="GOXT Venture Lab"
+            width={96}
+            height={32}
             className="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-300"
-            style={{ width: "120px", height: "40px" }}
+            style={{ width: "96px", height: "32px" }}
             priority
           />
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
-        <NavigationMenu className="max-lg:hidden bg-muted p-0.5 rounded-full">
+        <NavigationMenu className="max-lg:hidden">
           <NavigationMenuList className="flex gap-0">
             {navItems.map((item) => (
               <NavigationMenuItem key={item.title}>
                 <NavigationMenuLink
                   href={item.href}
-                  className="px-2 lg:px-4 py-2 text-sm font-medium rounded-full text-muted-foreground hover:text-foreground hover:bg-background outline outline-transparent hover:outline-border hover:shadow-xs transition tracking-normal"
+                  className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-transparent focus:bg-transparent transition"
                 >
                   {item.title}
                 </NavigationMenuLink>
@@ -177,13 +166,7 @@ export default function Navbar() {
 
         {/* CTA + Mobile Menu */}
         <div className="flex gap-3 items-center">
-          <ThemeToggle />
-          <a
-            href="/plataformas"
-            className="hidden lg:block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Iniciar Sesión
-          </a>
+          <ThemeToggle className="max-sm:hidden" />
           <DemoButton className="hidden lg:flex" />
 
           <div className="lg:hidden">
@@ -200,10 +183,10 @@ export default function Navbar() {
                 className="w-full sm:w-96 p-0 border-l-0"
               >
                 <div className="flex items-center justify-between p-6">
-                  <a href="#" className="relative block w-27.5">
+                  <Link href="/" className="relative block w-27.5">
                     <Image
                       src="/assets/logo_goxt.png"
-                      alt="GOxT"
+                      alt="GOXT Venture Lab"
                       width={110}
                       height={36}
                       className="dark:opacity-0 transition-opacity duration-300"
@@ -211,13 +194,13 @@ export default function Navbar() {
                     />
                     <Image
                       src="/assets/logo_goxt_blanco.png"
-                      alt="GOxT"
+                      alt="GOXT Venture Lab"
                       width={110}
                       height={36}
                       className="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-300"
                       style={{ width: "110px", height: "36px" }}
                     />
-                  </a>
+                  </Link>
                   <SheetClose>
                     <span className="rounded-full border border-border p-2.5 block">
                       <X width={16} height={16} />
@@ -245,15 +228,9 @@ export default function Navbar() {
                       </NavigationMenuList>
                     </NavigationMenu>
                     <DemoButton />
-                    <a
-                      href="/plataformas"
-                      className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      Iniciar Sesión
-                    </a>
                   </div>
                   <p className="text-sm text-muted-foreground mt-auto">
-                    © 2026 GOxT
+                    © 2026 GOXT Venture Lab
                   </p>
                 </div>
               </SheetContent>

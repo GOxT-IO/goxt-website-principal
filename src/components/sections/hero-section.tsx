@@ -70,7 +70,7 @@ export default function HeroSection() {
                         ))}
                       </div>
                       <p className="sm:text-sm text-xs font-normal text-muted-foreground text-left">
-                        Copec, ERR, SLEP y más empresas confían en GOxT
+                        Empresas e instituciones confían en GOXT
                       </p>
                     </div>
                   </div>

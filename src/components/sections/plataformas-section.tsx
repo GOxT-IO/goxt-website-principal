@@ -71,7 +71,13 @@ export default function PlataformasSection() {
             Accede a tu ecosistema GOXT.
           </h2>
           <p className="text-muted-foreground max-w-xl">
-            CRM, logística e inteligencia de negocio — todo conectado.
+            CRM, logística e inteligencia de negocio, todo conectado.
+          </p>
+          <p className="text-sm text-muted-foreground">
+            ¿Aún no tienes cuenta?{" "}
+            <a href="/empezar" className="font-medium text-foreground underline underline-offset-4">
+              Crea tu workspace
+            </a>
           </p>
         </div>
 
