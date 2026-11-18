@@ -20,7 +20,7 @@ export default function RedPage() {
         title="Una red que abre puertas"
         lead="Las universidades traen proyectos y talento, las empresas traen desafíos y presupuesto, y el Demo Day los conecta. Trabajamos en Chile, México y Colombia."
       >
-        <CtaLink href="/contacto">Quiero ser aliado</CtaLink>
+        <CtaLink href="/diagnostico">Quiero ser aliado</CtaLink>
       </PageHero>
       <Section className="pt-0 md:pt-0">
         <NetworkGrid />
@@ -28,7 +28,7 @@ export default function RedPage() {
       <FinalCta
         title="Sumemos fuerzas"
         lead="Si eres universidad, centro de innovación, empresa o mentor, conversemos sobre cómo trabajar juntos."
-        href="/contacto"
+        href="/diagnostico"
         label="Conversemos"
       />
     </PageShell>

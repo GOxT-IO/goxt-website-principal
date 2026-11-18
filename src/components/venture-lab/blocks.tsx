@@ -1,45 +1,32 @@
-import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Building2, GraduationCap, Lightbulb, Check } from "lucide-react";
-import {
-  segments,
-  pillars,
-  methodSteps,
-  products,
-  networkGroups,
-  type Segment,
-} from "@/lib/venture-lab";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { segments, pillars, methodSteps, products, networkGroups, type Segment } from "@/lib/venture-lab";
 import { CtaLink, Eyebrow, PageHero, Section, SectionHeading, FinalCta } from "./primitives";
 import MethodCycle from "./method-cycle";
 
-const segmentIcons = {
-  instituciones: GraduationCap,
-  empresas: Building2,
-  emprendedores: Lightbulb,
-} as const;
-
-export function SegmentSelector() {
+export function SegmentSelector({ title = "¿Desde dónde partes?" }: { title?: string }) {
   return (
-    <div className="grid gap-4 md:grid-cols-3">
-      {segments.map((s) => {
-        const Icon = segmentIcons[s.slug];
-        return (
+    <div className="flex flex-col gap-8">
+      <Eyebrow>{title}</Eyebrow>
+      <div className="grid border-t border-border md:grid-cols-3">
+        {segments.map((s, i) => (
           <a
             key={s.slug}
             href={`/${s.slug}`}
-            className="group relative flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:border-cian hover:shadow-xl hover:shadow-cian/10"
+            className={
+              "group flex flex-col gap-3 border-b border-border py-8 md:border-b-0 md:py-10 " +
+              (i > 0 ? "md:border-l md:pl-8" : "") +
+              (i < 2 ? " md:pr-8" : "")
+            }
           >
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-cian/10 text-cian">
-              <Icon size={22} />
-            </span>
-            <span className="text-xl font-semibold tracking-tight">{s.selector}</span>
-            <span className="text-sm text-muted-foreground">{s.eyebrow}</span>
-            <span className="mt-auto inline-flex items-center gap-2 text-sm font-medium text-foreground">
+            <span className="text-2xl font-medium tracking-tight">{s.selector}</span>
+            <span className="text-muted-foreground">{s.eyebrow}</span>
+            <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[15px] font-medium">
               Ver cómo te ayudamos
-              <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+              <ArrowRight size={16} className="transition group-hover:translate-x-0.5" />
             </span>
           </a>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 }
@@ -52,11 +39,10 @@ export function Pillars() {
         title="Un socio que se arremanga"
         lead="Las aceleradoras eligen pocas startups. Las consultoras entregan informes. Nosotros construimos el resultado contigo."
       />
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
-        {pillars.map((p, i) => (
-          <div key={p.title} className="flex flex-col gap-3 border-t-2 border-cian pt-6">
-            <span className="text-sm font-mono text-muted-foreground">0{i + 1}</span>
-            <h3 className="text-xl font-semibold tracking-tight">{p.title}</h3>
+      <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-10">
+        {pillars.map((p) => (
+          <div key={p.title} className="flex flex-col gap-3">
+            <h3 className="text-xl font-medium tracking-tight">{p.title}</h3>
             <p className="text-muted-foreground">{p.text}</p>
           </div>
         ))}
@@ -67,22 +53,13 @@ export function Pillars() {
 
 export function MethodSteps({ detailed = false }: { detailed?: boolean }) {
   return (
-    <ol className="grid gap-4 md:grid-cols-5">
+    <ol className="grid border-t border-border">
       {methodSteps.map((step, i) => (
-        <li
-          key={step.name}
-          className="relative flex flex-col gap-3 rounded-2xl border border-border bg-card p-5"
-        >
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">
-            {i + 1}
-          </span>
-          <h3 className="text-lg font-semibold">{step.name}</h3>
-          <p className="text-sm text-muted-foreground">{step.text}</p>
-          {detailed && (
-            <p className="mt-auto pt-3 border-t border-border text-xs font-medium uppercase tracking-wide text-cian">
-              {step.deliverable}
-            </p>
-          )}
+        <li key={step.name} className="grid gap-2 border-b border-border py-8 md:grid-cols-[80px_1fr_1.4fr_1fr] md:gap-8">
+          <span className="text-sm text-muted-foreground">0{i + 1}</span>
+          <h3 className="text-xl font-medium tracking-tight">{step.name}</h3>
+          <p className="text-muted-foreground">{step.text}</p>
+          {detailed && <p className="text-sm text-foreground md:text-right">{step.deliverable}</p>}
         </li>
       ))}
     </ol>
@@ -91,8 +68,8 @@ export function MethodSteps({ detailed = false }: { detailed?: boolean }) {
 
 export function MethodPreview() {
   return (
-    <Section className="bg-muted/50">
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+    <Section>
+      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <SectionHeading
           eyebrow="Cómo trabajamos"
           title="Un ciclo, no una línea"
@@ -102,53 +79,31 @@ export function MethodPreview() {
           Conoce el método
         </CtaLink>
       </div>
-      <div className="mt-12">
+      <div className="mt-14">
         <MethodCycle />
       </div>
     </Section>
   );
 }
 
+// Los productos tienen su propia web e identidad: aquí solo se presentan y se enlazan.
 export function ProductsGrid() {
   return (
-    <div className="grid gap-6 md:grid-cols-2">
+    <div className="grid border-t border-border">
       {products.map((p) => (
         <a
           key={p.name}
           href={p.href}
           {...(p.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition hover:border-cian"
+          className="group grid items-baseline gap-2 border-b border-border py-8 md:grid-cols-[1fr_1fr_1.6fr_auto] md:gap-8"
         >
-          {p.image && (
-            <div className="relative aspect-[16/8] overflow-hidden bg-muted">
-              <Image
-                src={p.image}
-                alt={p.name}
-                fill
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover transition duration-500 group-hover:scale-105"
-              />
-            </div>
-          )}
-          <div className="flex flex-col gap-3 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cian">{p.category}</p>
-            <div className="flex items-center justify-between gap-4">
-              <h3 className="text-2xl font-semibold tracking-tight">{p.name}</h3>
-              <ArrowUpRight
-                size={20}
-                className="text-muted-foreground transition group-hover:rotate-45 group-hover:text-foreground"
-              />
-            </div>
-            <p className="text-muted-foreground">{p.text}</p>
-            {p.price && <p className="text-sm font-medium text-foreground">{p.price}</p>}
-            <ul className="flex flex-wrap gap-2 pt-2">
-              {p.features.map((f) => (
-                <li key={f} className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
-                  {f}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <span className="text-2xl font-medium tracking-tight">{p.name}</span>
+          <span className="text-sm text-muted-foreground">{p.category}</span>
+          <span className="text-muted-foreground">{p.text}</span>
+          <span className="inline-flex items-center gap-1 text-[15px] font-medium">
+            Visitar
+            <ArrowUpRight size={16} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </span>
         </a>
       ))}
     </div>
@@ -158,17 +113,12 @@ export function ProductsGrid() {
 export function ProductsPreview() {
   return (
     <Section>
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-        <SectionHeading
-          eyebrow="Ecosistema GOXT"
-          title="Productos que funcionan por sí solos"
-          lead="NETGROW, CARGO, BI y Power Skills se contratan de forma independiente y son parte del ecosistema GOXT Venture Lab. También son la prueba de que sabemos llevar una idea a un producto con clientes."
-        />
-        <CtaLink href="/productos" variant="secondary">
-          Ver productos
-        </CtaLink>
-      </div>
-      <div className="mt-12">
+      <SectionHeading
+        eyebrow="Ecosistema GOXT"
+        title="Productos que funcionan por sí solos"
+        lead="Cada producto tiene su propia marca y su propia web. Nacieron en el lab y son la prueba de que sabemos llevar una idea a un producto con clientes."
+      />
+      <div className="mt-14">
         <ProductsGrid />
       </div>
     </Section>
@@ -177,35 +127,34 @@ export function ProductsPreview() {
 
 export function OpenLabBanner() {
   return (
-    <Section>
-      <div className="grid gap-8 rounded-3xl border border-border bg-card p-8 md:grid-cols-[1.4fr_1fr] md:p-12">
-        <div className="flex flex-col gap-4">
+    <Section className="bg-muted">
+      <div className="grid gap-12 md:grid-cols-[1.3fr_1fr]">
+        <div className="flex flex-col gap-5">
           <Eyebrow>Lanzamiento 2027</Eyebrow>
-          <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-balance">
+          <h2 className="text-3xl md:text-[44px] md:leading-[1.1] font-medium tracking-[-0.02em] text-balance">
             Laboratorio de innovación abierta junto a NODO
           </h2>
-          <p className="text-muted-foreground md:text-lg">
-            Empresas que traen retos reales, equipos de universidades que los resuelven y el equipo de
-            GOXT que construye los prototipos. El primer laboratorio se realiza junto a NODO Centro de
-            Innovación.
+          <p className="text-lg text-muted-foreground">
+            Empresas que traen retos reales, equipos de universidades que los resuelven y el equipo de GOXT que
+            construye los prototipos. El primer laboratorio se realiza junto a NODO Centro de Innovación.
           </p>
+          <CtaLink href="/diagnostico?service=Desarrollo" variant="secondary">
+            Quiero plantear un desafío
+          </CtaLink>
         </div>
-        <div className="flex flex-col justify-between gap-6">
-          <ul className="flex flex-col gap-3 text-sm">
-            {[
-              "Tu empresa plantea un desafío",
-              "Equipos universitarios lo trabajan con mentores",
-              "GOXT prototipa las mejores soluciones",
-              "Demo Day frente a la empresa",
-            ].map((t) => (
-              <li key={t} className="flex items-start gap-3">
-                <Check size={18} className="mt-0.5 shrink-0 text-cian" />
-                <span>{t}</span>
-              </li>
-            ))}
-          </ul>
-          <CtaLink href="/diagnostico?service=Desarrollo">Quiero plantear un desafío</CtaLink>
-        </div>
+        <ol className="grid self-end border-t border-foreground/15">
+          {[
+            "Tu empresa plantea un desafío",
+            "Equipos universitarios lo trabajan con mentores",
+            "GOXT prototipa las mejores soluciones",
+            "Demo Day frente a la empresa",
+          ].map((t, i) => (
+            <li key={t} className="flex gap-6 border-b border-foreground/15 py-4">
+              <span className="text-sm text-muted-foreground">0{i + 1}</span>
+              <span>{t}</span>
+            </li>
+          ))}
+        </ol>
       </div>
     </Section>
   );
@@ -213,10 +162,10 @@ export function OpenLabBanner() {
 
 export function NetworkGrid() {
   return (
-    <div className="grid gap-6 sm:grid-cols-2">
+    <div className="grid gap-x-10 border-t border-border sm:grid-cols-2">
       {networkGroups.map((g) => (
-        <div key={g.title} className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6">
-          <h3 className="text-xl font-semibold tracking-tight">{g.title}</h3>
+        <div key={g.title} className="flex flex-col gap-3 border-b border-border py-10">
+          <h3 className="text-xl font-medium tracking-tight">{g.title}</h3>
           <p className="text-muted-foreground">{g.text}</p>
         </div>
       ))}
@@ -224,20 +173,14 @@ export function NetworkGrid() {
   );
 }
 
-function ListCard({ title, items, tone }: { title: string; items: string[]; tone: "pain" | "gain" | "job" }) {
+function TextList({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6">
-      <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">{title}</h3>
+    <div className="flex flex-col gap-5">
+      <Eyebrow>{title}</Eyebrow>
       <ul className="flex flex-col gap-3">
         {items.map((it) => (
-          <li key={it} className="flex items-start gap-3">
-            <span
-              className={
-                "mt-2 h-1.5 w-1.5 shrink-0 rounded-full " +
-                (tone === "pain" ? "bg-ambar" : tone === "gain" ? "bg-cian" : "bg-foreground")
-              }
-            />
-            <span>{it}</span>
+          <li key={it} className="text-lg leading-snug">
+            {it}
           </li>
         ))}
       </ul>
@@ -257,45 +200,42 @@ export function SegmentPage({ segment }: { segment: Segment }) {
       </PageHero>
 
       <Section className="pt-0 md:pt-0">
-        <div className="grid gap-6 md:grid-cols-3">
-          <ListCard title="Lo que necesitas lograr" items={segment.jobs} tone="job" />
-          <ListCard title="Lo que hoy lo frena" items={segment.pains} tone="pain" />
-          <ListCard title="Lo que ganas" items={segment.gains} tone="gain" />
+        <div className="grid gap-12 border-t border-border pt-12 md:grid-cols-3 md:gap-10">
+          <TextList title="Lo que necesitas lograr" items={segment.jobs} />
+          <TextList title="Lo que hoy lo frena" items={segment.pains} />
+          <TextList title="Lo que ganas" items={segment.gains} />
         </div>
       </Section>
 
-      <Section className="bg-muted/50">
+      <Section className="pt-0 md:pt-0">
         <SectionHeading eyebrow="Qué hacemos contigo" title="Una oferta pensada para tu realidad" />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
+        <div className="mt-14 grid border-t border-border">
           {segment.offer.map((o) => (
-            <div key={o.name} className="flex flex-col gap-2 rounded-2xl border border-border bg-card p-6">
-              <h3 className="text-lg font-semibold">{o.name}</h3>
+            <div key={o.name} className="grid gap-2 border-b border-border py-8 md:grid-cols-[1fr_1.6fr] md:gap-8">
+              <h3 className="text-xl font-medium tracking-tight">{o.name}</h3>
               <p className="text-muted-foreground">{o.detail}</p>
             </div>
           ))}
         </div>
       </Section>
 
-      <Section>
-        <div className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div className="flex flex-col gap-4">
-            <Eyebrow>Tu primer resultado</Eyebrow>
-            <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-balance">
+      <Section className="bg-muted">
+        <div className="grid gap-12 md:grid-cols-2">
+          <div className="flex flex-col gap-5">
+            <Eyebrow>Tu primer resultado · {segment.valueMoment.days}</Eyebrow>
+            <h2 className="text-3xl md:text-[44px] md:leading-[1.1] font-medium tracking-[-0.02em] text-balance">
               {segment.valueMoment.label}
             </h2>
             <p className="text-muted-foreground">
-              Plazo objetivo: <strong className="text-foreground">{segment.valueMoment.days}</strong>. Con un
-              responsable de GOXT con nombre y apellido, un canal directo por WhatsApp y revisión a los 30 y
-              90 días.
+              Con un responsable de GOXT con nombre y apellido, un canal directo por WhatsApp y revisión a los 30 y 90
+              días.
             </p>
           </div>
-          <ol className="flex flex-col gap-3">
+          <ol className="grid self-end border-t border-foreground/15">
             {segment.valueMoment.steps.map((step, i) => (
-              <li key={step} className="flex items-center gap-4 rounded-xl border border-border bg-card p-4">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cian/15 text-sm font-semibold text-cian">
-                  {i + 1}
-                </span>
-                <span className="font-medium">{step}</span>
+              <li key={step} className="flex gap-6 border-b border-foreground/15 py-4">
+                <span className="text-sm text-muted-foreground">0{i + 1}</span>
+                <span>{step}</span>
               </li>
             ))}
           </ol>
@@ -309,21 +249,16 @@ export function SegmentPage({ segment }: { segment: Segment }) {
         label={segment.cta.label}
       />
 
-      <Section className="pt-0 md:pt-0">
-        <p className="text-sm text-muted-foreground mb-4">¿No eres {segmentNoun(segment.slug)}?</p>
-        <div className="flex flex-wrap gap-3">
+      <section className="mx-auto max-w-6xl px-5 md:px-8 pb-20">
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-border pt-8">
+          <span className="text-sm text-muted-foreground">¿No eres {segmentNoun(segment.slug)}?</span>
           {others.map((o) => (
-            <a
-              key={o.slug}
-              href={`/${o.slug}`}
-              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm hover:bg-muted"
-            >
+            <CtaLink key={o.slug} href={`/${o.slug}`} variant="secondary">
               {o.selector}
-              <ArrowRight size={14} />
-            </a>
+            </CtaLink>
           ))}
         </div>
-      </Section>
+      </section>
     </>
   );
 }

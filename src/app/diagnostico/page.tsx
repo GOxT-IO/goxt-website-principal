@@ -3,8 +3,8 @@ import Navbar from "@/components/layout/navbar";
 import { DiagnosticoSection, Footer } from "@/components/sections";
 
 export const metadata = {
-  title: "Agendar Diagnóstico | GOXT",
-  description: "En 30 minutos identificamos el cuello de botella de tu operación y te mostramos cómo resolverlo.",
+  title: "Conversemos",
+  description: "Cuéntanos tu desafío o tu idea. En 30 minutos entendemos dónde estás y te proponemos el siguiente paso.",
 };
 
 export default function DiagnosticoPage() {

@@ -72,10 +72,10 @@ const footerSections = [
 
 const Footer = () => {
   return (
-    <footer className="py-10">
-      <div className="max-w-7xl xl:px-16 lg:px-8 px-4 mx-auto">
+    <footer className="border-t border-border py-10">
+      <div className="max-w-6xl px-5 md:px-8 mx-auto">
         <div className="flex flex-col gap-6 sm:gap-12">
-          <div className="py-12 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-12 gap-x-8 gap-y-10 px-6 xl:px-0">
+          <div className="py-12 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-12 gap-x-8 gap-y-10 ">
 
             {/* Logo + tagline + redes */}
             <div className="col-span-full lg:col-span-4">
@@ -98,7 +98,7 @@ const Footer = () => {
                     style={{ width: "120px", height: "40px" }}
                   />
                 </Link>
-                <p className="text-base font-normal text-muted-foreground text-justify">
+                <p className="text-sm font-normal text-muted-foreground">
                   GOXT Venture Lab. Del desafío al resultado: consultoría, desarrollo tecnológico, formación y redes en un solo equipo.
                 </p>
                 <div className="flex items-center gap-4">
@@ -122,11 +122,11 @@ const Footer = () => {
             {footerSections.map(({ title, links }, index) => (
               <div key={index} className="col-span-2">
                 <div className="flex flex-col gap-4 ">
-                  <p className="text-base font-medium text-foreground">{title}</p>
+                  <p className="text-sm font-medium text-foreground">{title}</p>
                   <ul className="flex flex-col gap-3">
                     {links.map(({ title, href }) => (
                       <li key={title}>
-                        <a href={href} className="text-base font-normal text-muted-foreground hover:text-foreground">
+                        <a href={href} className="text-sm font-normal text-muted-foreground hover:text-foreground">
                           {title}
                         </a>
                       </li>
@@ -139,30 +139,30 @@ const Footer = () => {
             {/* Contacto */}
             <div className="col-span-2">
               <div className="flex flex-col gap-4 ">
-                <p className="text-base font-medium text-foreground">Contacto</p>
+                <p className="text-sm font-medium text-foreground">Contacto</p>
                 <ul className="flex flex-col gap-3">
                   <li>
-                    <p className="text-base font-normal text-muted-foreground">
+                    <p className="text-sm font-normal text-muted-foreground">
                       Santiago, Chile
                     </p>
                   </li>
                   <li>
-                    <a href="mailto:contacto@goxt.io" className="text-base font-normal text-muted-foreground hover:text-foreground">
+                    <a href="mailto:contacto@goxt.io" className="text-sm font-normal text-muted-foreground hover:text-foreground">
                       contacto@goxt.io
                     </a>
                   </li>
                   <li>
-                    <a href="https://wa.me/56929184887" target="_blank" rel="noopener noreferrer" className="text-base font-normal text-muted-foreground hover:text-foreground">
+                    <a href="https://wa.me/56929184887" target="_blank" rel="noopener noreferrer" className="text-sm font-normal text-muted-foreground hover:text-foreground">
                       +56 9 2918 4887
                     </a>
                   </li>
                   <li>
-                    <a href="/contacto" className="text-base font-normal text-muted-foreground hover:text-foreground">
+                    <a href="/diagnostico" className="text-sm font-normal text-muted-foreground hover:text-foreground">
                       Escríbenos
                     </a>
                   </li>
                   <li>
-                    <a href="/cargas" className="text-base font-normal text-muted-foreground hover:text-foreground">
+                    <a href="/cargas" className="text-sm font-normal text-muted-foreground hover:text-foreground">
                       Cargas
                     </a>
                   </li>

@@ -15,18 +15,18 @@ import { cn } from "@/lib/utils";
 const CALENDAR_URL = "https://calendar.app.google/1nbeEzv7YSstAzQL8";
 
 const SERVICES = [
-  { value: "Setup Inicial",  label: "Setup Inicial" },
-  { value: "Plataformas",    label: "Plataformas" },
-  { value: "Desarrollo",     label: "Desarrollo" },
-  { value: "Power Skills",   label: "Power Skills" },
-  { value: "Mentoría",       label: "Mentoría" },
+  { value: "Power Skills", label: "Un programa para mi institución" },
+  { value: "Desarrollo",   label: "Innovar o desarrollar en mi empresa" },
+  { value: "Mentoría",     label: "Validar o hacer crecer mi idea" },
+  { value: "Plataformas",  label: "Plataformas NETGROW, CARGO o BI" },
+  { value: "Otro",         label: "Otro" },
 ];
 
 const schema = z.object({
   name:      z.string().min(2, "Nombre requerido"),
   email:     z.string().email("Correo inválido"),
   company:   z.string().min(2, "Empresa requerida"),
-  service:   z.string().min(1, "Selecciona un servicio"),
+  service:   z.string().min(1, "Selecciona una opción"),
   challenge: z.string().optional(),
 });
 
@@ -85,36 +85,36 @@ export default function DiagnosticoSection() {
   };
 
   return (
-    <section className="pt-10 md:pt-16 pb-32">
-      <div className="container mx-auto px-6">
-        <div className="mx-auto flex max-w-6xl flex-col gap-16 lg:flex-row lg:gap-24">
+    <section className="pt-20 md:pt-32 pb-32">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="flex flex-col gap-16 lg:flex-row lg:gap-24">
 
           {/* Columna izquierda */}
           <div className="flex flex-1 flex-col gap-8">
             <div>
-              <h1 className="mb-4 text-4xl font-medium tracking-tight md:text-5xl">
-                Agendar Diagnóstico
+              <h1 className="mb-6 text-[40px] leading-[1.08] md:text-[64px] md:leading-[1.05] font-medium tracking-[-0.03em]">
+                Conversemos
               </h1>
-              <p className="text-muted-foreground">
-                En 30 minutos identificamos el cuello de botella de tu operación y te mostramos cómo resolverlo.
+              <p className="text-lg md:text-xl text-muted-foreground">
+                Cuéntanos tu desafío o tu idea. En 30 minutos entendemos dónde estás y te proponemos el siguiente paso.
               </p>
             </div>
-            <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
-              <li>✓ Diagnóstico personalizado según tu industria</li>
-              <li>✓ Sin instalaciones ni tarjeta de crédito</li>
-              <li>✓ Respondemos en menos de 24 horas</li>
+            <ul className="grid border-t border-border">
+              {["Sin costo y sin compromiso", "Te respondemos en menos de 24 horas", "Hablas con el equipo que hace el trabajo"].map((t) => (
+                <li key={t} className="border-b border-border py-4">{t}</li>
+              ))}
             </ul>
           </div>
 
           {/* Columna derecha — formulario */}
           <div className="flex-1">
             {submitted ? (
-              <div className="flex flex-col gap-6 rounded-xl bg-muted/50 p-8 md:p-10 h-full justify-center items-center text-center">
-                <CheckCircleIcon className="size-12 text-green-500" />
+              <div className="flex flex-col gap-6 rounded-2xl border border-border p-8 md:p-10 h-full justify-center items-center text-center">
+                <CheckCircleIcon className="size-10" />
                 <div>
                   <h2 className="text-xl font-semibold mb-2">¡Solicitud recibida!</h2>
                   <p className="text-sm text-muted-foreground">
-                    Estamos preparando tu diagnóstico. Te contactaremos en menos de 24 horas.
+                    Te escribimos en menos de 24 horas para coordinar la conversación.
                   </p>
                 </div>
                 <div className="flex flex-col gap-3 w-full max-w-xs">
@@ -130,11 +130,10 @@ export default function DiagnosticoSection() {
             ) : (
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col gap-6 rounded-xl bg-muted/50 p-8 md:p-10"
+                className="flex flex-col gap-6 rounded-2xl border border-border p-8 md:p-10"
               >
                 <div>
-                  <h2 className="text-xl font-semibold">Agendar Diagnóstico</h2>
-                  <p className="text-sm text-muted-foreground">Preparamos tu diagnóstico en menos de 24 horas</p>
+                  <h2 className="text-xl font-medium">Cuéntanos de ti</h2>
                 </div>
 
                 <FieldGroup>
@@ -175,7 +174,7 @@ export default function DiagnosticoSection() {
                     <Input
                       id="company"
                       aria-invalid={!!errors.company}
-                      placeholder="Ej: GOxT SpA"
+                      placeholder="Empresa, institución o proyecto"
                       {...register("company")}
                     />
                     <FieldError errors={[errors.company]} />
@@ -184,7 +183,7 @@ export default function DiagnosticoSection() {
                   {/* Servicio */}
                   <Field>
                     <FieldLabel htmlFor="service">
-                      ¿Qué servicio te interesa? <span className="text-destructive">*</span>
+                      ¿Qué te trae a GOXT? <span className="text-destructive">*</span>
                     </FieldLabel>
                     <select
                       id="service"
@@ -198,7 +197,7 @@ export default function DiagnosticoSection() {
                       )}
                       {...register("service")}
                     >
-                      <option value="" disabled hidden>Selecciona un servicio</option>
+                      <option value="" disabled hidden>Elige una opción</option>
                       {SERVICES.map((s) => (
                         <option key={s.value} value={s.value}>{s.label}</option>
                       ))}
@@ -211,7 +210,7 @@ export default function DiagnosticoSection() {
                     <FieldLabel htmlFor="challenge">¿Cuéntanos tu desafío? (opcional)</FieldLabel>
                     <Textarea
                       id="challenge"
-                      placeholder="Texto libre opcional..."
+                      placeholder="Cuéntanos en pocas palabras tu desafío o tu idea"
                       rows={3}
                       {...register("challenge")}
                     />
@@ -232,7 +231,7 @@ export default function DiagnosticoSection() {
                         Enviando...
                       </>
                     ) : (
-                      "Agendar Diagnóstico"
+                      "Enviar"
                     )}
                   </Button>
                 </FieldGroup>

@@ -1,5 +1,8 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+// Estilo minimalista: mucho blanco, tipografía grande, casi sin color.
+// Solo dos tipos de botón: principal (píldora negra) y enlace de texto.
 
 export function CtaLink({
   href,
@@ -13,45 +16,27 @@ export function CtaLink({
   className?: string;
 }) {
   const external = href.startsWith("http");
+  const Icon = external ? ArrowUpRight : ArrowRight;
   return (
     <a
       href={href}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={cn(
-        "relative inline-flex items-center text-sm font-medium rounded-full h-12 p-1 ps-6 pe-14 group transition-all duration-500 hover:ps-14 hover:pe-6 w-fit overflow-hidden",
-        variant === "primary" && "bg-primary text-primary-foreground",
-        variant === "secondary" && "border border-border bg-background text-foreground hover:bg-muted",
-        variant === "light" && "bg-white text-noche",
+        "group inline-flex w-fit items-center gap-1.5 text-[15px] font-medium transition",
+        variant === "primary" && "h-11 rounded-full bg-primary px-5 text-primary-foreground hover:opacity-85",
+        variant === "light" && "h-11 rounded-full bg-white px-5 text-black hover:opacity-85",
+        variant === "secondary" && "h-11 text-foreground hover:opacity-70",
         className
       )}
     >
-      <span className="relative z-10 transition-all duration-500">{children}</span>
-      <span
-        className={cn(
-          "absolute right-1 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45",
-          variant === "primary" && "bg-background text-foreground",
-          variant === "secondary" && "bg-primary text-primary-foreground",
-          variant === "light" && "bg-ambar text-noche"
-        )}
-      >
-        <ArrowUpRight size={16} />
-      </span>
+      {children}
+      {variant === "secondary" && <Icon size={16} className="transition group-hover:translate-x-0.5" />}
     </a>
   );
 }
 
 export function Eyebrow({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <p
-      className={cn(
-        "inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-cian",
-        className
-      )}
-    >
-      <span className="h-px w-6 bg-cian" aria-hidden />
-      {children}
-    </p>
-  );
+  return <p className={cn("text-sm text-muted-foreground", className)}>{children}</p>;
 }
 
 export function SectionHeading({
@@ -66,15 +51,10 @@ export function SectionHeading({
   align?: "left" | "center";
 }) {
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-4 max-w-3xl",
-        align === "center" && "mx-auto items-center text-center"
-      )}
-    >
+    <div className={cn("flex max-w-3xl flex-col gap-4", align === "center" && "mx-auto items-center text-center")}>
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-balance">{title}</h2>
-      {lead && <p className="text-base md:text-lg text-muted-foreground text-pretty">{lead}</p>}
+      <h2 className="text-3xl md:text-[44px] md:leading-[1.1] font-medium tracking-[-0.02em] text-balance">{title}</h2>
+      {lead && <p className="text-lg text-muted-foreground text-pretty">{lead}</p>}
     </div>
   );
 }
@@ -89,8 +69,8 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn("py-16 md:py-24", className)}>
-      <div className="max-w-6xl mx-auto px-4 md:px-6">{children}</div>
+    <section id={id} className={cn("py-20 md:py-32", className)}>
+      <div className="mx-auto max-w-6xl px-5 md:px-8">{children}</div>
     </section>
   );
 }
@@ -107,13 +87,15 @@ export function PageHero({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 md:px-6 pt-12 md:pt-20 pb-12 md:pb-16">
-        <div className="flex flex-col gap-6 max-w-4xl">
+    <section>
+      <div className="mx-auto max-w-6xl px-5 md:px-8 pt-20 md:pt-32 pb-16 md:pb-24">
+        <div className="flex max-w-4xl flex-col gap-6">
           <Eyebrow>{eyebrow}</Eyebrow>
-          <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-balance">{title}</h1>
-          <p className="text-base md:text-xl text-muted-foreground max-w-3xl text-pretty">{lead}</p>
-          {children && <div className="flex flex-wrap gap-4 pt-2">{children}</div>}
+          <h1 className="text-[40px] leading-[1.08] md:text-[64px] md:leading-[1.05] font-medium tracking-[-0.03em] text-balance">
+            {title}
+          </h1>
+          <p className="max-w-2xl text-lg md:text-xl text-muted-foreground text-pretty">{lead}</p>
+          {children && <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-4">{children}</div>}
         </div>
       </div>
     </section>
@@ -124,7 +106,7 @@ export function FinalCta({
   title = "Cuéntanos tu desafío",
   lead = "En 30 minutos entendemos dónde estás y te proponemos el siguiente paso. Sin compromiso.",
   href = "/diagnostico",
-  label = "Agenda una conversación",
+  label = "Conversemos",
 }: {
   title?: string;
   lead?: string;
@@ -132,18 +114,19 @@ export function FinalCta({
   label?: string;
 }) {
   return (
-    <section className="py-16 md:py-24">
-      <div className="max-w-6xl mx-auto px-4 md:px-6">
-        <div className="relative overflow-hidden rounded-3xl bg-noche text-white px-6 py-14 md:px-16 md:py-20">
-          <div className="relative flex flex-col gap-6 max-w-2xl">
-            <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-balance">{title}</h2>
-            <p className="text-white/75 text-base md:text-lg">{lead}</p>
-            <CtaLink href={href} variant="light">
-              {label}
-            </CtaLink>
-          </div>
-        </div>
+    <section className="border-t border-border">
+      <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 md:px-8 py-24 md:py-36">
+        <h2 className="max-w-3xl text-4xl md:text-[56px] md:leading-[1.05] font-medium tracking-[-0.03em] text-balance">
+          {title}
+        </h2>
+        <p className="max-w-xl text-lg text-muted-foreground">{lead}</p>
+        <CtaLink href={href}>{label}</CtaLink>
       </div>
     </section>
   );
+}
+
+// Lista con separadores finos, en vez de tarjetas.
+export function RuleList({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <div className={cn("grid border-t border-border", className)}>{children}</div>;
 }

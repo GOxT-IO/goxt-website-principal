@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageShell from "@/components/venture-lab/page-shell";
 import { ProductsGrid } from "@/components/venture-lab/blocks";
-import { CtaLink, FinalCta, PageHero, Section } from "@/components/venture-lab/primitives";
+import { FinalCta, PageHero, Section } from "@/components/venture-lab/primitives";
 
 const description =
   "NETGROW, CARGO, BI y Power Skills: productos independientes que funcionan por sí solos y forman parte del ecosistema GOXT Venture Lab.";
@@ -18,16 +18,8 @@ export default function ProductosPage() {
       <PageHero
         eyebrow="Ecosistema GOXT"
         title="Productos que funcionan por sí solos"
-        lead="Cada producto se contrata de forma independiente y resuelve un problema concreto. Juntos forman el ecosistema GOXT Venture Lab y son la base sobre la que construimos los proyectos de nuestros clientes."
-      >
-        <CtaLink href="/empezar">Empieza ahora</CtaLink>
-        <CtaLink href="/demo" variant="secondary">
-          Demo semanal en vivo
-        </CtaLink>
-        <CtaLink href="/planes" variant="secondary">
-          Ver planes y precios
-        </CtaLink>
-      </PageHero>
+        lead="Cada producto tiene su propia marca, su propia web y se contrata de forma independiente. Nacieron en GOXT Venture Lab y son la base sobre la que construimos los proyectos de nuestros clientes."
+      />
       <Section className="pt-0 md:pt-0">
         <ProductsGrid />
       </Section>
@@ -35,7 +27,7 @@ export default function ProductosPage() {
         title="¿No sabes qué producto necesitas?"
         lead="Cuéntanos tu desafío y te recomendamos el punto de partida, aunque sea uno solo de nuestros productos."
         href="/diagnostico?service=Plataformas"
-        label="Pide una recomendación"
+        label="Conversemos"
       />
     </PageShell>
   );

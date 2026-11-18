@@ -42,16 +42,16 @@ export default function MetodoPage() {
       />
       <Section className="pt-0 md:pt-0">
         <MethodCycle />
-        <div className="mt-10">
+        <div className="mt-20">
           <MethodSteps detailed />
         </div>
       </Section>
-      <Section className="bg-muted/50">
+      <Section>
         <SectionHeading eyebrow="Nuestros principios" title="Lo que no negociamos" />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
+        <div className="mt-14 grid gap-x-10 border-t border-border sm:grid-cols-2">
           {principles.map((p) => (
-            <div key={p.title} className="flex flex-col gap-2 rounded-2xl border border-border bg-card p-6">
-              <h3 className="text-lg font-semibold">{p.title}</h3>
+            <div key={p.title} className="flex flex-col gap-3 border-b border-border py-10">
+              <h3 className="text-xl font-medium tracking-tight">{p.title}</h3>
               <p className="text-muted-foreground">{p.text}</p>
             </div>
           ))}
